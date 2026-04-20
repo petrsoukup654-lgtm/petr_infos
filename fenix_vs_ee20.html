@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fénix vs. eE 2.0 – Proč přejít na novou platformu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:    #003152;
+    --deep:    #00101B;
+    --mid:     #005893;
+    --blue:    #009FE3;
+    --orange:  #f1840e;
+    --white:   #ffffff;
+    --white70: rgba(255,255,255,0.70);
+    --white30: rgba(255,255,255,0.15);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ── TYPOGRAPHY ── */
+  h1, h2, h3 { font-family: 'Syne', sans-serif; line-height: 1.05; }
+  h1 { font-size: clamp(2.8rem, 6vw, 5.5rem); font-weight: 800; }
+  h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 700; }
+  h3 { font-size: 1.15rem; font-weight: 700; letter-spacing: .02em; }
+  p  { font-size: 1rem; line-height: 1.7; color: var(--white70); font-weight: 300; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 5vw;
+    background: rgba(0,17,27,.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--white30);
+  }
+  .nav-logo { display: flex; align-items: center; }
+  .nav-logo svg { height: 32px; width: auto; }
+  nav ul { list-style: none; display: flex; gap: 2rem; }
+  nav ul a {
+    color: var(--white70); text-decoration: none;
+    font-size: .9rem; font-weight: 500;
+    transition: color .2s;
+  }
+  nav ul a:hover { color: var(--blue); }
+
+  /* ── SECTIONS ── */
+  section { padding: 7rem 5vw; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    background: linear-gradient(135deg, var(--deep) 0%, var(--mid) 100%);
+    position: relative; overflow: hidden;
+    padding-top: 8rem;
+  }
+  #hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 80% 40%, rgba(0,159,227,.18) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 10% 70%, rgba(241,132,14,.10) 0%, transparent 60%);
+  }
+  .hero-inner { position: relative; max-width: 900px; }
+  .hero-tag {
+    display: inline-block;
+    background: var(--white30);
+    border: 1px solid rgba(0,159,227,.4);
+    color: var(--blue);
+    font-size: .8rem; font-weight: 500; letter-spacing: .12em;
+    text-transform: uppercase; padding: .4rem 1rem;
+    border-radius: 2rem; margin-bottom: 2rem;
+  }
+  #hero h1 { margin-bottom: 1.5rem; }
+  #hero h1 em { font-style: normal; color: var(--blue); }
+  #hero h1 span { color: var(--orange); }
+  .hero-sub {
+    font-size: 1.2rem; color: var(--white70);
+    max-width: 560px; margin-bottom: 3rem; font-weight: 300;
+  }
+  .hero-cta {
+    display: inline-flex; align-items: center; gap: .6rem;
+    background: var(--orange); color: var(--white);
+    padding: .9rem 2rem; border-radius: .4rem;
+    font-weight: 500; text-decoration: none; font-size: 1rem;
+    transition: transform .2s, box-shadow .2s;
+    box-shadow: 0 4px 24px rgba(241,132,14,.35);
+  }
+  .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(241,132,14,.45); }
+
+  /* scrolling numbers */
+  .hero-stats {
+    display: flex; gap: 3rem; margin-top: 5rem;
+    flex-wrap: wrap;
+  }
+  .stat-item { border-left: 2px solid var(--blue); padding-left: 1.2rem; }
+  .stat-num  { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: var(--white); }
+  .stat-num em { color: var(--blue); font-style: normal; }
+  .stat-label { font-size: .8rem; color: var(--white70); text-transform: uppercase; letter-spacing: .08em; margin-top: .2rem; }
+
+  /* ── SECTION HEADERS ── */
+  .section-label {
+    font-size: .75rem; font-weight: 500; letter-spacing: .15em;
+    text-transform: uppercase; color: var(--blue);
+    margin-bottom: .8rem;
+  }
+  .section-title { margin-bottom: .8rem; }
+  .section-sub   { color: var(--white70); max-width: 520px; margin-bottom: 3.5rem; }
+
+  /* ── COMPARISON SECTION ── */
+  #vyhody { background: var(--navy); }
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .card {
+    background: rgba(255,255,255,.04);
+    border: 1px solid var(--white30);
+    border-radius: .75rem;
+    padding: 2rem;
+    transition: transform .25s, border-color .25s, box-shadow .25s;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    border-color: var(--blue);
+    box-shadow: 0 8px 32px rgba(0,159,227,.12);
+  }
+  .card-icon {
+    width: 2.8rem; height: 2.8rem;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(0,159,227,.12);
+    border-radius: .5rem; margin-bottom: 1.2rem;
+    font-size: 1.4rem;
+  }
+  .card h3 { margin-bottom: .6rem; }
+  .card p  { font-size: .9rem; }
+
+  /* ── COMPARISON TABLE ── */
+  #srovnani {
+    background: linear-gradient(175deg, var(--deep) 0%, var(--navy) 100%);
+    position: relative; overflow: hidden;
+  }
+  #srovnani::after {
+    content: '';
+    position: absolute; top: -20%; right: -10%;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(0,159,227,.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .table-wrapper { overflow-x: auto; border-radius: .75rem; }
+  table {
+    width: 100%; border-collapse: collapse;
+    min-width: 560px;
+  }
+  thead tr {
+    background: rgba(0,159,227,.12);
+    border-bottom: 2px solid var(--blue);
+  }
+  thead th {
+    padding: 1rem 1.4rem; text-align: left;
+    font-family: 'Syne', sans-serif; font-weight: 700;
+    font-size: .9rem; letter-spacing: .04em;
+  }
+  thead th:nth-child(2) { color: var(--blue); }
+  thead th:nth-child(3) { color: var(--white70); }
+  tbody tr {
+    border-bottom: 1px solid var(--white30);
+    transition: background .15s;
+  }
+  tbody tr:hover { background: rgba(255,255,255,.03); }
+  tbody td {
+    padding: .85rem 1.4rem; font-size: .9rem;
+    color: var(--white70);
+  }
+  tbody td:first-child { color: var(--white); font-weight: 500; }
+  .yes { color: #4dd98a; font-weight: 500; }
+  .no  { color: #ff6b6b; }
+  .dev { color: var(--orange); }
+  .better { color: var(--blue); font-weight: 500; }
+
+  /* ── FEATURES DETAIL ── */
+  #detaily { background: var(--navy); }
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+  }
+  .feature-block {
+    border-left: 2px solid var(--blue);
+    padding-left: 1.5rem;
+  }
+  .feature-block h3 {
+    font-size: 1.1rem; margin-bottom: 1rem;
+    display: flex; align-items: center; gap: .6rem;
+  }
+  .feature-block h3 span { color: var(--blue); }
+  .feature-list { list-style: none; display: flex; flex-direction: column; gap: .6rem; }
+  .feature-list li {
+    font-size: .9rem; color: var(--white70);
+    display: flex; gap: .6rem; align-items: flex-start;
+  }
+  .feature-list li::before {
+    content: '→'; color: var(--orange);
+    flex-shrink: 0; margin-top: .05em;
+  }
+
+  /* ── SUMMARY / CTA ── */
+  #shrnuti {
+    background: linear-gradient(135deg, var(--deep) 0%, var(--mid) 100%);
+    text-align: center; position: relative; overflow: hidden;
+  }
+  #shrnuti::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(0,159,227,.15) 0%, transparent 70%);
+  }
+  .shrnuti-inner { position: relative; max-width: 680px; margin: 0 auto; }
+  .check-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .8rem 2rem;
+    margin: 2.5rem auto;
+    max-width: 520px; text-align: left;
+  }
+  .check-item {
+    display: flex; align-items: center; gap: .6rem;
+    font-size: .95rem; color: var(--white70);
+  }
+  .check-item::before {
+    content: '✓';
+    color: var(--blue); font-weight: 700; font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--deep);
+    border-top: 1px solid var(--white30);
+    padding: 2rem 5vw;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  footer p { font-size: .8rem; color: var(--white70); margin: 0; }
+  .footer-brand { display: flex; align-items: center; }
+
+  /* ── ANIMATIONS ── */
+  .reveal {
+    opacity: 0; transform: translateY(28px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 640px) {
+    nav ul { display: none; }
+    .check-grid { grid-template-columns: 1fr; }
+    .hero-stats { gap: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1192.24 507.8" style="height:32px;width:auto;" aria-label="eBRANA"><defs><style>.ebr-logo{fill:#fff;}</style></defs><path class="ebr-logo" d="M457.3,367.21c-39.87,71.28-116.09,119.58-203.4,119.58-128.42,0-232.89-104.48-232.89-232.9S125.48,21,253.89,21c87.88,0,164.55,48.94,204.19,120.99h23.67C440.31,57.96,353.75,0,253.89,0,113.9,0,0,113.9,0,253.9s113.9,253.9,253.89,253.9c99.3,0,185.45-57.31,227.16-140.58h-23.75Z"/><path class="ebr-logo" d="M426.88,367.21c-37.01,56.3-100.72,93.56-172.99,93.56-114.07,0-206.87-92.8-206.87-206.87S139.82,47.02,253.89,47.02c72.87,0,137.05,37.87,173.92,94.97h8.27c-37.69-61.13-105.25-101.97-182.18-101.97-117.93,0-213.87,95.94-213.87,213.88s95.94,213.87,213.87,213.87c76.34,0,143.45-40.21,181.3-100.56h-8.32Z"/><path class="ebr-logo" d="M275.21,238.36c0-8.75-7.09-15.12-17.96-15.12-12.05,0-18.67,8.27-19.61,15.12h37.57ZM321.76,267.66h-83.65c.95,8.75,11.34,14.18,21.27,14.18s17.61-.87,23.76-7l35.31,17.88c-10.87,17.72-32.85,29.06-60.49,29.06-36.15,0-70.42-22.92-70.42-66.87,0-41.12,30.95-66.88,69.23-66.88s65.46,28.83,65.46,68.05c0,4.02-.24,8.75-.47,11.58Z"/><path class="ebr-logo" d="M392.47,270.52v22.68h16.78c8.74,0,14.89-4.02,14.89-11.58,0-8.98-10.4-11.1-17.25-11.1h-14.42ZM392.47,213.81v20.56h15.12c7.8,0,13.47-3.54,13.47-11.1,0-6.38-5.91-9.45-14.65-9.45h-13.94ZM449.42,250.43c16.07,3.78,31.43,17.26,31.43,38.05,0,36.62-32.37,48.91-64.98,48.91h-75.85v-167.29h68.76c27.18,0,65.22,5.67,65.22,44.42,0,17.96-9.92,29.54-24.57,35.21v.71h-.01Z"/><path class="ebr-logo" d="M557.75,240.74c7.8,0,19.61-1.88,19.61-13.94s-10.16-13-17.25-13h-13.47v26.94h11.11ZM494.2,170.1h70.65c33.08,0,67.58,11.81,67.58,54.35,0,20.32-10.63,36.62-29.3,45.13l42.53,67.82h-64.74l-32.14-59.78h-1.65v59.78h-52.93v-167.3Z"/><path class="ebr-logo" d="M726.43,269.81l13.71-41.35,13.47,41.35h-27.18ZM770.86,170.1h-59.78l-65.93,167.29h59.55l8.27-24.58h53.17l8.74,24.58h61.2l-65.22-167.29Z"/><polygon class="ebr-logo" points="899.2 170.1 946.93 254.93 947.88 254.93 945.52 170.1 998.92 170.1 998.92 337.39 941.5 337.39 895.19 257.52 894.24 257.52 896.6 337.39 843.19 337.39 843.19 170.1 899.2 170.1"/><path class="ebr-logo" d="M1096.31,228.46l-13.71,41.35h27.18l-13.47-41.35ZM1067.24,170.1h59.78l65.22,167.29h-61.2l-8.74-24.58h-53.17l-8.27,24.58h-59.55l65.93-167.29Z"/><polygon class="ebr-logo" points="714.62 157.51 740.84 123.49 790.94 123.49 754.55 157.51 714.62 157.51"/></svg>
+  </div>
+  <ul>
+    <li><a href="#vyhody">Výhody</a></li>
+    <li><a href="#srovnani">Srovnání</a></li>
+    <li><a href="#detaily">Detaily</a></li>
+    <li><a href="#shrnuti">Shrnutí</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">Nová generace e-commerce platformy</div>
+    <h1><em>Fénix</em> vs.<br><span>eE 2.0</span></h1>
+    <p class="hero-sub">Proč přecházíme na platformu, která nás nebrzdí – rychlejší, otevřenější a připravená na budoucnost.</p>
+    <a href="#vyhody" class="hero-cta">Prozkoumat výhody →</a>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num"><em>99,9</em> %</div>
+        <div class="stat-label">Garantovaná dostupnost</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num"><em>90+</em></div>
+        <div class="stat-label">Core Web Vitals skóre</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num"><em>3</em> kroky</div>
+        <div class="stat-label">Pokladní proces</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VÝHODY -->
+<section id="vyhody">
+  <div class="section-label reveal">Klíčové výhody</div>
+  <h2 class="section-title reveal">Co Fénix přináší oproti eE 2.0</h2>
+  <p class="section-sub reveal">Platforma navržená pro růst, moderní technologie a reálné potřeby e-commerce projektů.</p>
+
+  <div class="cards-grid">
+    <div class="card reveal">
+      <div class="card-icon">⚡</div>
+      <h3>Výkon a stabilita</h3>
+      <p>Dostupnost 99,9 % (VS Hosting), Core Web Vitals 90+. Tam kde se eE 2.0 zadýchávala, Fénix teprve rozpaluje.</p>
+    </div>
+    <div class="card reveal">
+      <div class="card-icon">🔌</div>
+      <h3>API-first architektura</h3>
+      <p>Postaven na otevřeném REST API s dokumentací. Webhooks pro nástroje třetích stran. eE 2.0 API nemá.</p>
+    </div>
+    <div class="card reveal">
+      <div class="card-icon">🖼️</div>
+      <h3>Moderní katalog</h3>
+      <p>Podpora WebP, video v galerii produktu, výrazně rychlejší fulltextové vyhledávání a parametrické filtry.</p>
+    </div>
+    <div class="card reveal">
+      <div class="card-icon">🛒</div>
+      <h3>Lepší konverze</h3>
+      <p>3-krokový checkout místo 4. Automaticky ukládaný košík. Sleva na dopravu a platbu, kterou eE 2.0 neumí.</p>
+    </div>
+    <div class="card reveal">
+      <div class="card-icon">🏢</div>
+      <h3>Silný B2B základ</h3>
+      <p>Firemní účty, individuální ceníky, objednávky na fakturu. Aktivně rozvíjeno pro Abrasiv, Frpneu i Mega.</p>
+    </div>
+    <div class="card reveal">
+      <div class="card-icon">🚀</div>
+      <h3>Škálovatelnost bez limitů</h3>
+      <p>Žádné definované limity produktů ani návštěvnosti. Připravena na AI integraci a automatizaci.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SROVNÁNÍ -->
+<section id="srovnani">
+  <div class="section-label reveal">Přímé srovnání</div>
+  <h2 class="section-title reveal">Fénix vs. eE 2.0 – tabulka</h2>
+  <p class="section-sub reveal">Přehled klíčových parametrů vedle sebe.</p>
+
+  <div class="table-wrapper reveal">
+    <table>
+      <thead>
+        <tr>
+          <th>Oblast</th>
+          <th>Fénix</th>
+          <th>eE 2.0</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Garantovaná dostupnost</td><td class="better">99,9 % (VS Hosting)</td><td class="no">99,3 % (UVT)</td></tr>
+        <tr><td>Core Web Vitals</td><td class="yes">90+ ✓</td><td class="no">Nesplňuje</td></tr>
+        <tr><td>REST API s dokumentací</td><td class="yes">ANO ✓</td><td class="no">NE</td></tr>
+        <tr><td>Webhooks</td><td class="yes">ANO ✓</td><td class="no">NE</td></tr>
+        <tr><td>Podpora WebP / videa</td><td class="yes">ANO ✓</td><td class="no">NE</td></tr>
+        <tr><td>Počet kroků v pokladně</td><td class="better">3 kroky</td><td class="no">4 kroky</td></tr>
+        <tr><td>Automatický košík</td><td class="yes">ANO ✓</td><td class="no">NE</td></tr>
+        <tr><td>Sleva na dopravu / platbu</td><td class="yes">ANO ✓</td><td class="no">NE</td></tr>
+        <tr><td>B2B modul</td><td class="dev">V rozvoji</td><td class="no">Stagnuje</td></tr>
+        <tr><td>ERP integrace (Pohoda, Helios…)</td><td class="dev">V rozvoji</td><td class="no">Stagnuje</td></tr>
+        <tr><td>Marketplace (BASE)</td><td class="dev">V plánu</td><td class="no">NE</td></tr>
+        <tr><td>Limity produktů / návštěvnosti</td><td class="yes">Žádné ✓</td><td class="no">Definované</td></tr>
+        <tr><td>Produktové feedy (Heureka, GMC)</td><td class="yes">ANO ✓</td><td class="yes">ANO ✓</td></tr>
+        <tr><td>SSL, DDoS ochrana, GDPR</td><td class="yes">ANO ✓</td><td class="yes">ANO ✓</td></tr>
+        <tr><td>Hosting zahrnut v ceně</td><td class="yes">ANO ✓</td><td class="yes">ANO ✓</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- DETAILY -->
+<section id="detaily">
+  <div class="section-label reveal">Podrobněji</div>
+  <h2 class="section-title reveal">Co konkrétně Fénix umí lépe</h2>
+  <p class="section-sub reveal">Oblasti, kde je rozdíl nejvíce znatelný pro klienty i vývojový tým.</p>
+
+  <div class="features-grid">
+    <div class="feature-block reveal">
+      <h3><span>⚙️</span> Technologie & výkon</h3>
+      <ul class="feature-list">
+        <li>API-first přístup – flexibilita pro AI a vlastní vývoj</li>
+        <li>Webhooks pro real-time napojení třetích stran</li>
+        <li>Core Web Vitals 90+ oproti nesplňujícímu standardu</li>
+        <li>Dostupnost 99,9 % díky VS Hosting infrastruktuře</li>
+        <li>Násobně vyšší výkon při velkém objemu produktů</li>
+      </ul>
+    </div>
+    <div class="feature-block reveal">
+      <h3><span>🖼️</span> Produktový katalog</h3>
+      <ul class="feature-list">
+        <li>Podpora moderních formátů obrázků (WebP a další)</li>
+        <li>Video přímo v galerii produktového detailu</li>
+        <li>Výrazně rychlejší parametrické filtrování</li>
+        <li>Rychlejší fulltext s inteligentním našeptávačem</li>
+        <li>Zjednodušená správa technických parametrů a variant</li>
+      </ul>
+    </div>
+    <div class="feature-block reveal">
+      <h3><span>🛒</span> Nákupní proces & B2B</h3>
+      <ul class="feature-list">
+        <li>3-krokový checkout místo 4 kroků</li>
+        <li>Košík se automaticky ukládá na zařízení</li>
+        <li>Sleva na dopravu a platbu (eE 2.0 neumí)</li>
+        <li>B2B modul: firemní účty, individuální ceníky, faktury</li>
+        <li>Vlastní barvy štítků produktů přímo v adminu</li>
+      </ul>
+    </div>
+    <div class="feature-block reveal">
+      <h3><span>🔗</span> Integrace & škálovatelnost</h3>
+      <ul class="feature-list">
+        <li>ERP napojení: Pohoda, Helios, Money, Vario (v rozvoji)</li>
+        <li>Marketplace BASE (plánováno)</li>
+        <li>Produktové feedy: Heureka, Google Merchant</li>
+        <li>Žádné definované limity produktů ani návštěvnosti</li>
+        <li>Platforma připravena na duplikaci pro více trhů</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SHRNUTÍ -->
+<section id="shrnuti">
+  <div class="shrnuti-inner">
+    <div class="section-label reveal">Závěr</div>
+    <h2 class="reveal" style="font-size:clamp(2rem,4vw,3.2rem);">Proč Fénix?</h2>
+    <p class="reveal" style="margin: 1rem auto 0; max-width: 480px;">
+      Fénix není jen náhrada eE 2.0. Je to platforma připravená na e-commerce budoucnost.
+    </p>
+    <div class="check-grid reveal">
+      <div class="check-item">Vyšší výkon a dostupnost (99,9 %)</div>
+      <div class="check-item">Moderní technologie: API, webhooks</div>
+      <div class="check-item">Podpora WebP a videa v katalogu</div>
+      <div class="check-item">Aktivní rozvoj B2B a ERP napojení</div>
+      <div class="check-item">Škálovatelnost bez limitů</div>
+      <div class="check-item">Připravena na AI a automatizaci</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1192.24 507.8" style="height:26px;width:auto;" aria-label="eBRANA"><defs><style>.ebr-logo{fill:#fff;}</style></defs><path class="ebr-logo" d="M457.3,367.21c-39.87,71.28-116.09,119.58-203.4,119.58-128.42,0-232.89-104.48-232.89-232.9S125.48,21,253.89,21c87.88,0,164.55,48.94,204.19,120.99h23.67C440.31,57.96,353.75,0,253.89,0,113.9,0,0,113.9,0,253.9s113.9,253.9,253.89,253.9c99.3,0,185.45-57.31,227.16-140.58h-23.75Z"/><path class="ebr-logo" d="M426.88,367.21c-37.01,56.3-100.72,93.56-172.99,93.56-114.07,0-206.87-92.8-206.87-206.87S139.82,47.02,253.89,47.02c72.87,0,137.05,37.87,173.92,94.97h8.27c-37.69-61.13-105.25-101.97-182.18-101.97-117.93,0-213.87,95.94-213.87,213.88s95.94,213.87,213.87,213.87c76.34,0,143.45-40.21,181.3-100.56h-8.32Z"/><path class="ebr-logo" d="M275.21,238.36c0-8.75-7.09-15.12-17.96-15.12-12.05,0-18.67,8.27-19.61,15.12h37.57ZM321.76,267.66h-83.65c.95,8.75,11.34,14.18,21.27,14.18s17.61-.87,23.76-7l35.31,17.88c-10.87,17.72-32.85,29.06-60.49,29.06-36.15,0-70.42-22.92-70.42-66.87,0-41.12,30.95-66.88,69.23-66.88s65.46,28.83,65.46,68.05c0,4.02-.24,8.75-.47,11.58Z"/><path class="ebr-logo" d="M392.47,270.52v22.68h16.78c8.74,0,14.89-4.02,14.89-11.58,0-8.98-10.4-11.1-17.25-11.1h-14.42ZM392.47,213.81v20.56h15.12c7.8,0,13.47-3.54,13.47-11.1,0-6.38-5.91-9.45-14.65-9.45h-13.94ZM449.42,250.43c16.07,3.78,31.43,17.26,31.43,38.05,0,36.62-32.37,48.91-64.98,48.91h-75.85v-167.29h68.76c27.18,0,65.22,5.67,65.22,44.42,0,17.96-9.92,29.54-24.57,35.21v.71h-.01Z"/><path class="ebr-logo" d="M557.75,240.74c7.8,0,19.61-1.88,19.61-13.94s-10.16-13-17.25-13h-13.47v26.94h11.11ZM494.2,170.1h70.65c33.08,0,67.58,11.81,67.58,54.35,0,20.32-10.63,36.62-29.3,45.13l42.53,67.82h-64.74l-32.14-59.78h-1.65v59.78h-52.93v-167.3Z"/><path class="ebr-logo" d="M726.43,269.81l13.71-41.35,13.47,41.35h-27.18ZM770.86,170.1h-59.78l-65.93,167.29h59.55l8.27-24.58h53.17l8.74,24.58h61.2l-65.22-167.29Z"/><polygon class="ebr-logo" points="899.2 170.1 946.93 254.93 947.88 254.93 945.52 170.1 998.92 170.1 998.92 337.39 941.5 337.39 895.19 257.52 894.24 257.52 896.6 337.39 843.19 337.39 843.19 170.1 899.2 170.1"/><path class="ebr-logo" d="M1096.31,228.46l-13.71,41.35h27.18l-13.47-41.35ZM1067.24,170.1h59.78l65.22,167.29h-61.2l-8.74-24.58h-53.17l-8.27,24.58h-59.55l65.93-167.29Z"/><polygon class="ebr-logo" points="714.62 157.51 740.84 123.49 790.94 123.49 754.55 157.51 714.62 157.51"/></svg>
+  </div>
+  <p>Fenix e-commerce platforma © 2025</p>
+  <p style="color:var(--orange);">Interní přehled pro obchodní a projektový tým</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => io.observe(el));
+</script>
+</body>
+</html>

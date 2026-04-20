@@ -249,6 +249,44 @@
   }
   footer p { font-size: .8rem; color: var(--white70); margin: 0; }
 
+  /* ── DOWNLOAD CTA ── */
+  #download {
+    background: var(--navy);
+    padding: 5rem 5vw;
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+  #download::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 50% 80% at 50% 50%, rgba(241,132,14,.10) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .download-inner { position: relative; max-width: 640px; margin: 0 auto; }
+  .download-inner h2 { margin-bottom: .8rem; }
+  .download-inner p { margin-bottom: 2.5rem; font-size: 1.05rem; }
+  .download-btn {
+    display: inline-flex; align-items: center; gap: .9rem;
+    background: var(--orange); color: var(--white);
+    padding: 1.3rem 2.6rem; border-radius: .6rem;
+    font-family: 'Syne', sans-serif; font-weight: 700;
+    font-size: 1.15rem; text-decoration: none;
+    letter-spacing: .02em;
+    box-shadow: 0 6px 32px rgba(241,132,14,.4);
+    transition: transform .2s, box-shadow .2s, background .2s;
+  }
+  .download-btn:hover {
+    transform: translateY(-3px);
+    background: #ff9420;
+    box-shadow: 0 12px 48px rgba(241,132,14,.55);
+  }
+  .download-btn svg { width: 1.4rem; height: 1.4rem; flex-shrink: 0; }
+  .download-note {
+    margin-top: 1.2rem;
+    font-size: .8rem; color: var(--white70);
+    letter-spacing: .04em;
+  }
+
   .reveal {
     opacity: 0; transform: translateY(28px);
     transition: opacity .6s ease, transform .6s ease;
@@ -657,6 +695,24 @@
       <div class="check-item">Škálovatelnost bez limitů</div>
       <div class="check-item">Připraveno na AI a automatizaci</div>
     </div>
+  </div>
+</section>
+
+<!-- DOWNLOAD -->
+<section id="download">
+  <div class="download-inner">
+    <div class="section-label reveal">Zdrojová data</div>
+    <h2 class="reveal">Potřebujete data do prezentace?</h2>
+    <p class="reveal">Stáhněte si kompletní srovnávací tabulku ve formátu Excel se všemi 13 kapitolami, prioritami a komentáři.</p>
+    <a class="download-btn reveal" href="ee2.0%20vs%20fenix.xlsx" download>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="7 10 12 15 17 10"/>
+        <line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>
+      Stáhnout srovnání v Excelu
+    </a>
+    <div class="download-note reveal">.xlsx · přímo z našeho podkladu</div>
   </div>
 </section>
 

@@ -3,26 +3,196 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hello World</title>
+    <title>Petr Info</title>
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body { font-family: Georgia, serif; background: #f9f9f9; color: #333; }
+
+      nav {
+        background: #2c3e50;
+        padding: 1rem 2rem;
+        display: flex;
+        gap: 2rem;
+      }
+      nav a {
+        color: #ecf0f1;
+        text-decoration: none;
+        font-size: 1rem;
+        cursor: pointer;
+        padding: 0.3rem 0.8rem;
+        border-radius: 4px;
+        transition: background 0.2s;
+      }
+      nav a:hover, nav a.active {
+        background: #3d5166;
+      }
+
+      .page {
+        max-width: 800px;
+        margin: 4rem auto;
+        text-align: center;
+        padding: 0 1rem;
+      }
+
+      h1 { font-size: 2.5rem; margin-bottom: 1.5rem; }
+      h2 { font-size: 1.8rem; margin-bottom: 1rem; color: #2c3e50; }
+
+      .poem {
+        margin-top: 2rem;
+        line-height: 2;
+        font-size: 1.2rem;
+        color: #555;
+      }
+      .poem .author {
+        margin-top: 1rem;
+        color: #999;
+        font-size: 0.9rem;
+      }
+
+      .infografiky-grid {
+        margin-top: 2rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 1.5rem;
+      }
+      .infografika-card {
+        background: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        padding: 1.8rem;
+        text-align: left;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      }
+      .infografika-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        border-color: #2c3e50;
+      }
+      .infografika-card .card-icon { font-size: 2rem; margin-bottom: 0.8rem; }
+      .infografika-card h3 { font-size: 1.1rem; margin-bottom: 0.4rem; color: #2c3e50; }
+      .infografika-card p { font-size: 0.88rem; color: #777; line-height: 1.5; }
+
+      .infografika-viewer {
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.6);
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+      }
+      .viewer-bar {
+        background: #2c3e50;
+        color: #fff;
+        padding: 0.7rem 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-family: sans-serif;
+        font-size: 0.95rem;
+      }
+      .viewer-bar button {
+        background: #e74c3c;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        padding: 0.4rem 1rem;
+        cursor: pointer;
+        font-size: 0.9rem;
+      }
+      .viewer-bar button:hover { background: #c0392b; }
+      .infografika-viewer iframe {
+        flex: 1;
+        width: 100%;
+        border: none;
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>
     <script type="text/babel">
-      function App() {
+      const { useState } = React;
+
+      function Nav({ page, setPage }) {
         return (
-          <div style={{ textAlign: "center", fontFamily: "Georgia, serif", marginTop: "4rem" }}>
+          <nav>
+            <a className={page === "home" ? "active" : ""} onClick={() => setPage("home")}>Domů</a>
+            <a className={page === "infografiky" ? "active" : ""} onClick={() => setPage("infografiky")}>Infografiky</a>
+          </nav>
+        );
+      }
+
+      function Home() {
+        return (
+          <div className="page">
             <h1>Hello World</h1>
-            <poem style={{ display: "block", marginTop: "2rem", lineHeight: "2", fontSize: "1.2rem", color: "#555" }}>
-              <p>Tvůj smích je světlo, které hřeje,<br />
-              tvé oči hvězdy, jež mi září.<br />
-              Bez tebe den se prázdný jeví,<br />
-              s tebou i bouře v ráj se mění.</p>
-              <p style={{ color: "#999", fontSize: "0.9rem" }}>— s láskou, Petr</p>
-            </poem>
+            <div className="poem">
+              <p>
+                Tvůj smích je světlo, které hřeje,<br />
+                tvé oči hvězdy, jež mi září.<br />
+                Bez tebe den se prázdný jeví,<br />
+                s tebou i bouře v ráj se mění.
+              </p>
+              <p className="author">— s láskou, Petr</p>
+            </div>
           </div>
+        );
+      }
+
+      const infografiky = [
+        {
+          id: "fenix_vs_ee20",
+          icon: "🚀",
+          title: "Fénix vs. eE 2.0",
+          desc: "Proč přejít na novou e-commerce platformu — srovnání výkonu, funkcí a možností.",
+          url: "fenix_vs_ee20.html",
+        },
+      ];
+
+      function Infografiky() {
+        const [open, setOpen] = React.useState(null);
+
+        return (
+          <>
+            <div className="page">
+              <h2>Infografiky</h2>
+              <div className="infografiky-grid">
+                {infografiky.map(item => (
+                  <div key={item.id} className="infografika-card" onClick={() => setOpen(item)}>
+                    <div className="card-icon">{item.icon}</div>
+                    <h3>{item.title}</h3>
+                    <p>{item.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {open && (
+              <div className="infografika-viewer">
+                <div className="viewer-bar">
+                  <span>{open.icon} {open.title}</span>
+                  <button onClick={() => setOpen(null)}>✕ Zavřít</button>
+                </div>
+                <iframe src={open.url} title={open.title} />
+              </div>
+            )}
+          </>
+        );
+      }
+
+      function App() {
+        const [page, setPage] = useState("home");
+
+        return (
+          <>
+            <Nav page={page} setPage={setPage} />
+            {page === "home" && <Home />}
+            {page === "infografiky" && <Infografiky />}
+          </>
         );
       }
 

@@ -154,33 +154,19 @@
       ];
 
       function Infografiky() {
-        const [open, setOpen] = React.useState(null);
-
         return (
-          <>
-            <div className="page">
-              <h2>Infografiky</h2>
-              <div className="infografiky-grid">
-                {infografiky.map(item => (
-                  <div key={item.id} className="infografika-card" onClick={() => setOpen(item)}>
-                    <div className="card-icon">{item.icon}</div>
-                    <h3>{item.title}</h3>
-                    <p>{item.desc}</p>
-                  </div>
-                ))}
-              </div>
+          <div className="page">
+            <h2>Infografiky</h2>
+            <div className="infografiky-grid">
+              {infografiky.map(item => (
+                <a key={item.id} className="infografika-card" href={item.url} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
+                  <div className="card-icon">{item.icon}</div>
+                  <h3>{item.title}</h3>
+                  <p>{item.desc}</p>
+                </a>
+              ))}
             </div>
-
-            {open && (
-              <div className="infografika-viewer">
-                <div className="viewer-bar">
-                  <span>{open.icon} {open.title}</span>
-                  <button onClick={() => setOpen(null)}>✕ Zavřít</button>
-                </div>
-                <iframe src={open.url} title={open.title} />
-              </div>
-            )}
-          </>
+          </div>
         );
       }
 

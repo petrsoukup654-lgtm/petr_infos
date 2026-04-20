@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fénix vs. eE 2.0 – Proč přejít na novou platformu</title>
+<title>Fénix vs. eE 2.0 – Kompletní srovnání platforem</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -19,7 +19,6 @@
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { scroll-behavior: smooth; }
 
   body {
@@ -29,11 +28,11 @@
     overflow-x: hidden;
   }
 
-  /* ── TYPOGRAPHY ── */
-  h1, h2, h3 { font-family: 'Syne', sans-serif; line-height: 1.05; }
+  h1, h2, h3, h4 { font-family: 'Syne', sans-serif; line-height: 1.1; }
   h1 { font-size: clamp(2.8rem, 6vw, 5.5rem); font-weight: 800; }
   h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 700; }
   h3 { font-size: 1.15rem; font-weight: 700; letter-spacing: .02em; }
+  h4 { font-size: 1.3rem; font-weight: 700; color: var(--blue); margin: 2.5rem 0 1rem; letter-spacing: .02em; }
   p  { font-size: 1rem; line-height: 1.7; color: var(--white70); font-weight: 300; }
 
   /* ── NAV ── */
@@ -45,9 +44,8 @@
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--white30);
   }
-  .nav-logo { display: flex; align-items: center; }
   .nav-logo svg { height: 32px; width: auto; }
-  nav ul { list-style: none; display: flex; gap: 2rem; }
+  nav ul { list-style: none; display: flex; gap: 2rem; flex-wrap: wrap; }
   nav ul a {
     color: var(--white70); text-decoration: none;
     font-size: .9rem; font-weight: 500;
@@ -55,7 +53,6 @@
   }
   nav ul a:hover { color: var(--blue); }
 
-  /* ── SECTIONS ── */
   section { padding: 7rem 5vw; }
 
   /* ── HERO ── */
@@ -100,11 +97,7 @@
   }
   .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(241,132,14,.45); }
 
-  /* scrolling numbers */
-  .hero-stats {
-    display: flex; gap: 3rem; margin-top: 5rem;
-    flex-wrap: wrap;
-  }
+  .hero-stats { display: flex; gap: 3rem; margin-top: 5rem; flex-wrap: wrap; }
   .stat-item { border-left: 2px solid var(--blue); padding-left: 1.2rem; }
   .stat-num  { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: var(--white); }
   .stat-num em { color: var(--blue); font-style: normal; }
@@ -117,9 +110,9 @@
     margin-bottom: .8rem;
   }
   .section-title { margin-bottom: .8rem; }
-  .section-sub   { color: var(--white70); max-width: 520px; margin-bottom: 3.5rem; }
+  .section-sub   { color: var(--white70); max-width: 620px; margin-bottom: 3.5rem; }
 
-  /* ── COMPARISON SECTION ── */
+  /* ── VÝHODY ── */
   #vyhody { background: var(--navy); }
   .cards-grid {
     display: grid;
@@ -148,7 +141,7 @@
   .card h3 { margin-bottom: .6rem; }
   .card p  { font-size: .9rem; }
 
-  /* ── COMPARISON TABLE ── */
+  /* ── SROVNÁNÍ ── */
   #srovnani {
     background: linear-gradient(175deg, var(--deep) 0%, var(--navy) 100%);
     position: relative; overflow: hidden;
@@ -160,64 +153,65 @@
     background: radial-gradient(circle, rgba(0,159,227,.12) 0%, transparent 70%);
     pointer-events: none;
   }
-  .table-wrapper { overflow-x: auto; border-radius: .75rem; }
+
+  .chapter { margin-bottom: 3rem; position: relative; }
+
+  .table-wrapper { overflow-x: auto; border-radius: .6rem; border: 1px solid var(--white30); }
   table {
     width: 100%; border-collapse: collapse;
-    min-width: 560px;
+    min-width: 720px;
+    background: rgba(255,255,255,.02);
   }
   thead tr {
     background: rgba(0,159,227,.12);
     border-bottom: 2px solid var(--blue);
   }
   thead th {
-    padding: 1rem 1.4rem; text-align: left;
+    padding: .9rem 1.2rem; text-align: left;
     font-family: 'Syne', sans-serif; font-weight: 700;
-    font-size: .9rem; letter-spacing: .04em;
+    font-size: .85rem; letter-spacing: .04em;
   }
-  thead th:nth-child(2) { color: var(--blue); }
-  thead th:nth-child(3) { color: var(--white70); }
+  thead th:nth-child(3) { color: var(--blue); }
+  thead th:nth-child(2) { color: var(--white70); }
   tbody tr {
     border-bottom: 1px solid var(--white30);
     transition: background .15s;
   }
+  tbody tr:last-child { border-bottom: none; }
   tbody tr:hover { background: rgba(255,255,255,.03); }
   tbody td {
-    padding: .85rem 1.4rem; font-size: .9rem;
-    color: var(--white70);
+    padding: .75rem 1.2rem; font-size: .88rem;
+    color: var(--white70); vertical-align: top;
   }
-  tbody td:first-child { color: var(--white); font-weight: 500; }
-  .yes { color: #4dd98a; font-weight: 500; }
-  .no  { color: #ff6b6b; }
-  .dev { color: var(--orange); }
-  .better { color: var(--blue); font-weight: 500; }
+  tbody td:first-child { color: var(--white); font-weight: 500; width: 28%; }
+  tbody td.req { color: var(--white70); font-size: .83rem; width: 22%; }
+  tbody td.status { width: 9%; white-space: nowrap; font-weight: 500; }
+  tbody td.prio { width: 6%; text-align: center; color: var(--orange); font-weight: 600; }
+  tbody td.comment { font-size: .82rem; color: rgba(255,255,255,.55); font-style: italic; }
 
-  /* ── FEATURES DETAIL ── */
-  #detaily { background: var(--navy); }
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2rem;
+  .yes      { color: #4dd98a; }
+  .no       { color: #ff6b6b; }
+  .dev      { color: var(--orange); }
+  .custom   { color: #c79aff; }
+  .better   { color: var(--blue); }
+
+  /* ── LEGENDA ── */
+  .legend {
+    margin-top: 3rem;
+    background: rgba(255,255,255,.03);
+    border: 1px solid var(--white30);
+    border-radius: .6rem;
+    padding: 1.5rem 2rem;
+    display: flex; flex-wrap: wrap; gap: 1.5rem 2.5rem;
   }
-  .feature-block {
-    border-left: 2px solid var(--blue);
-    padding-left: 1.5rem;
-  }
-  .feature-block h3 {
-    font-size: 1.1rem; margin-bottom: 1rem;
-    display: flex; align-items: center; gap: .6rem;
-  }
-  .feature-block h3 span { color: var(--blue); }
-  .feature-list { list-style: none; display: flex; flex-direction: column; gap: .6rem; }
-  .feature-list li {
-    font-size: .9rem; color: var(--white70);
-    display: flex; gap: .6rem; align-items: flex-start;
-  }
-  .feature-list li::before {
-    content: '→'; color: var(--orange);
-    flex-shrink: 0; margin-top: .05em;
+  .legend h3 { font-size: .85rem; color: var(--blue); text-transform: uppercase; letter-spacing: .12em; margin-bottom: .5rem; width: 100%; }
+  .legend-item { font-size: .85rem; color: var(--white70); display: flex; align-items: center; gap: .6rem; }
+  .legend-dot {
+    width: .7rem; height: .7rem; border-radius: 50%;
+    flex-shrink: 0;
   }
 
-  /* ── SUMMARY / CTA ── */
+  /* ── SHRNUTÍ ── */
   #shrnuti {
     background: linear-gradient(135deg, var(--deep) 0%, var(--mid) 100%);
     text-align: center; position: relative; overflow: hidden;
@@ -254,9 +248,7 @@
     flex-wrap: wrap; gap: 1rem;
   }
   footer p { font-size: .8rem; color: var(--white70); margin: 0; }
-  .footer-brand { display: flex; align-items: center; }
 
-  /* ── ANIMATIONS ── */
   .reveal {
     opacity: 0; transform: translateY(28px);
     transition: opacity .6s ease, transform .6s ease;
@@ -272,15 +264,13 @@
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <div class="nav-logo">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1192.24 507.8" style="height:32px;width:auto;" aria-label="eBRANA"><defs><style>.ebr-logo{fill:#fff;}</style></defs><path class="ebr-logo" d="M457.3,367.21c-39.87,71.28-116.09,119.58-203.4,119.58-128.42,0-232.89-104.48-232.89-232.9S125.48,21,253.89,21c87.88,0,164.55,48.94,204.19,120.99h23.67C440.31,57.96,353.75,0,253.89,0,113.9,0,0,113.9,0,253.9s113.9,253.9,253.89,253.9c99.3,0,185.45-57.31,227.16-140.58h-23.75Z"/><path class="ebr-logo" d="M426.88,367.21c-37.01,56.3-100.72,93.56-172.99,93.56-114.07,0-206.87-92.8-206.87-206.87S139.82,47.02,253.89,47.02c72.87,0,137.05,37.87,173.92,94.97h8.27c-37.69-61.13-105.25-101.97-182.18-101.97-117.93,0-213.87,95.94-213.87,213.88s95.94,213.87,213.87,213.87c76.34,0,143.45-40.21,181.3-100.56h-8.32Z"/><path class="ebr-logo" d="M275.21,238.36c0-8.75-7.09-15.12-17.96-15.12-12.05,0-18.67,8.27-19.61,15.12h37.57ZM321.76,267.66h-83.65c.95,8.75,11.34,14.18,21.27,14.18s17.61-.87,23.76-7l35.31,17.88c-10.87,17.72-32.85,29.06-60.49,29.06-36.15,0-70.42-22.92-70.42-66.87,0-41.12,30.95-66.88,69.23-66.88s65.46,28.83,65.46,68.05c0,4.02-.24,8.75-.47,11.58Z"/><path class="ebr-logo" d="M392.47,270.52v22.68h16.78c8.74,0,14.89-4.02,14.89-11.58,0-8.98-10.4-11.1-17.25-11.1h-14.42ZM392.47,213.81v20.56h15.12c7.8,0,13.47-3.54,13.47-11.1,0-6.38-5.91-9.45-14.65-9.45h-13.94ZM449.42,250.43c16.07,3.78,31.43,17.26,31.43,38.05,0,36.62-32.37,48.91-64.98,48.91h-75.85v-167.29h68.76c27.18,0,65.22,5.67,65.22,44.42,0,17.96-9.92,29.54-24.57,35.21v.71h-.01Z"/><path class="ebr-logo" d="M557.75,240.74c7.8,0,19.61-1.88,19.61-13.94s-10.16-13-17.25-13h-13.47v26.94h11.11ZM494.2,170.1h70.65c33.08,0,67.58,11.81,67.58,54.35,0,20.32-10.63,36.62-29.3,45.13l42.53,67.82h-64.74l-32.14-59.78h-1.65v59.78h-52.93v-167.3Z"/><path class="ebr-logo" d="M726.43,269.81l13.71-41.35,13.47,41.35h-27.18ZM770.86,170.1h-59.78l-65.93,167.29h59.55l8.27-24.58h53.17l8.74,24.58h61.2l-65.22-167.29Z"/><polygon class="ebr-logo" points="899.2 170.1 946.93 254.93 947.88 254.93 945.52 170.1 998.92 170.1 998.92 337.39 941.5 337.39 895.19 257.52 894.24 257.52 896.6 337.39 843.19 337.39 843.19 170.1 899.2 170.1"/><path class="ebr-logo" d="M1096.31,228.46l-13.71,41.35h27.18l-13.47-41.35ZM1067.24,170.1h59.78l65.22,167.29h-61.2l-8.74-24.58h-53.17l-8.27,24.58h-59.55l65.93-167.29Z"/><polygon class="ebr-logo" points="714.62 157.51 740.84 123.49 790.94 123.49 754.55 157.51 714.62 157.51"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1192.24 507.8" aria-label="eBRANA"><defs><style>.ebr-logo{fill:#fff;}</style></defs><path class="ebr-logo" d="M457.3,367.21c-39.87,71.28-116.09,119.58-203.4,119.58-128.42,0-232.89-104.48-232.89-232.9S125.48,21,253.89,21c87.88,0,164.55,48.94,204.19,120.99h23.67C440.31,57.96,353.75,0,253.89,0,113.9,0,0,113.9,0,253.9s113.9,253.9,253.89,253.9c99.3,0,185.45-57.31,227.16-140.58h-23.75Z"/><path class="ebr-logo" d="M426.88,367.21c-37.01,56.3-100.72,93.56-172.99,93.56-114.07,0-206.87-92.8-206.87-206.87S139.82,47.02,253.89,47.02c72.87,0,137.05,37.87,173.92,94.97h8.27c-37.69-61.13-105.25-101.97-182.18-101.97-117.93,0-213.87,95.94-213.87,213.88s95.94,213.87,213.87,213.87c76.34,0,143.45-40.21,181.3-100.56h-8.32Z"/><path class="ebr-logo" d="M275.21,238.36c0-8.75-7.09-15.12-17.96-15.12-12.05,0-18.67,8.27-19.61,15.12h37.57ZM321.76,267.66h-83.65c.95,8.75,11.34,14.18,21.27,14.18s17.61-.87,23.76-7l35.31,17.88c-10.87,17.72-32.85,29.06-60.49,29.06-36.15,0-70.42-22.92-70.42-66.87,0-41.12,30.95-66.88,69.23-66.88s65.46,28.83,65.46,68.05c0,4.02-.24,8.75-.47,11.58Z"/><path class="ebr-logo" d="M392.47,270.52v22.68h16.78c8.74,0,14.89-4.02,14.89-11.58,0-8.98-10.4-11.1-17.25-11.1h-14.42ZM392.47,213.81v20.56h15.12c7.8,0,13.47-3.54,13.47-11.1,0-6.38-5.91-9.45-14.65-9.45h-13.94ZM449.42,250.43c16.07,3.78,31.43,17.26,31.43,38.05,0,36.62-32.37,48.91-64.98,48.91h-75.85v-167.29h68.76c27.18,0,65.22,5.67,65.22,44.42,0,17.96-9.92,29.54-24.57,35.21v.71h-.01Z"/><path class="ebr-logo" d="M557.75,240.74c7.8,0,19.61-1.88,19.61-13.94s-10.16-13-17.25-13h-13.47v26.94h11.11ZM494.2,170.1h70.65c33.08,0,67.58,11.81,67.58,54.35,0,20.32-10.63,36.62-29.3,45.13l42.53,67.82h-64.74l-32.14-59.78h-1.65v59.78h-52.93v-167.3Z"/><path class="ebr-logo" d="M726.43,269.81l13.71-41.35,13.47,41.35h-27.18ZM770.86,170.1h-59.78l-65.93,167.29h59.55l8.27-24.58h53.17l8.74,24.58h61.2l-65.22-167.29Z"/><polygon class="ebr-logo" points="899.2 170.1 946.93 254.93 947.88 254.93 945.52 170.1 998.92 170.1 998.92 337.39 941.5 337.39 895.19 257.52 894.24 257.52 896.6 337.39 843.19 337.39 843.19 170.1 899.2 170.1"/><path class="ebr-logo" d="M1096.31,228.46l-13.71,41.35h27.18l-13.47-41.35ZM1067.24,170.1h59.78l65.22,167.29h-61.2l-8.74-24.58h-53.17l-8.27,24.58h-59.55l65.93-167.29Z"/><polygon class="ebr-logo" points="714.62 157.51 740.84 123.49 790.94 123.49 754.55 157.51 714.62 157.51"/></svg>
   </div>
   <ul>
     <li><a href="#vyhody">Výhody</a></li>
     <li><a href="#srovnani">Srovnání</a></li>
-    <li><a href="#detaily">Detaily</a></li>
     <li><a href="#shrnuti">Shrnutí</a></li>
   </ul>
 </nav>
@@ -290,8 +280,8 @@
   <div class="hero-inner">
     <div class="hero-tag">Nová generace e-commerce platformy</div>
     <h1><em>Fénix</em> vs.<br><span>eE 2.0</span></h1>
-    <p class="hero-sub">Proč přecházíme na platformu, která nás nebrzdí – rychlejší, otevřenější a připravená na budoucnost.</p>
-    <a href="#vyhody" class="hero-cta">Prozkoumat výhody →</a>
+    <p class="hero-sub">Kompletní srovnání obou platforem napříč 13 kapitolami – rychlejší, otevřenější a připravená na budoucnost.</p>
+    <a href="#srovnani" class="hero-cta">Prozkoumat srovnání →</a>
     <div class="hero-stats">
       <div class="stat-item">
         <div class="stat-num"><em>99,9</em> %</div>
@@ -324,12 +314,12 @@
     <div class="card reveal">
       <div class="card-icon">🔌</div>
       <h3>API-first architektura</h3>
-      <p>Postaven na otevřeném REST API s dokumentací. Webhooks pro nástroje třetích stran. eE 2.0 API nemá.</p>
+      <p>Postaveno na otevřeném API s dokumentací, webhooks pro integrace třetích stran. eE 2.0 nic z toho nemá.</p>
     </div>
     <div class="card reveal">
       <div class="card-icon">🖼️</div>
       <h3>Moderní katalog</h3>
-      <p>Podpora WebP, video v galerii produktu, výrazně rychlejší fulltextové vyhledávání a parametrické filtry.</p>
+      <p>WebP, video v galerii produktu, elastic fulltext s našeptávačem a výrazně rychlejší parametrické filtrování.</p>
     </div>
     <div class="card reveal">
       <div class="card-icon">🛒</div>
@@ -344,7 +334,7 @@
     <div class="card reveal">
       <div class="card-icon">🚀</div>
       <h3>Škálovatelnost bez limitů</h3>
-      <p>Žádné definované limity produktů ani návštěvnosti. Připravena na AI integraci a automatizaci.</p>
+      <p>Žádné definované limity produktů ani návštěvnosti. Připraveno na AI integraci a automatizaci.</p>
     </div>
   </div>
 </section>
@@ -352,85 +342,301 @@
 <!-- SROVNÁNÍ -->
 <section id="srovnani">
   <div class="section-label reveal">Přímé srovnání</div>
-  <h2 class="section-title reveal">Fénix vs. eE 2.0 – tabulka</h2>
-  <p class="section-sub reveal">Přehled klíčových parametrů vedle sebe.</p>
+  <h2 class="section-title reveal">Kompletní srovnání funkcí</h2>
+  <p class="section-sub reveal">Přehled všech parametrů napříč 13 kapitolami – technologie, katalog, objednávky, cenotvorba, platby, doprava, ERP, marketing, bezpečnost, podpora a škálovatelnost.</p>
 
-  <div class="table-wrapper reveal">
-    <table>
-      <thead>
-        <tr>
-          <th>Oblast</th>
-          <th>Fénix</th>
-          <th>eE 2.0</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>Garantovaná dostupnost</td><td class="better">99,9 % (VS Hosting)</td><td class="no">99,3 % (UVT)</td></tr>
-        <tr><td>Core Web Vitals</td><td class="yes">90+ ✓</td><td class="no">Nesplňuje</td></tr>
-        <tr><td>REST API s dokumentací</td><td class="yes">ANO ✓</td><td class="no">NE</td></tr>
-        <tr><td>Webhooks</td><td class="yes">ANO ✓</td><td class="no">NE</td></tr>
-        <tr><td>Podpora WebP / videa</td><td class="yes">ANO ✓</td><td class="no">NE</td></tr>
-        <tr><td>Počet kroků v pokladně</td><td class="better">3 kroky</td><td class="no">4 kroky</td></tr>
-        <tr><td>Automatický košík</td><td class="yes">ANO ✓</td><td class="no">NE</td></tr>
-        <tr><td>Sleva na dopravu / platbu</td><td class="yes">ANO ✓</td><td class="no">NE</td></tr>
-        <tr><td>B2B modul</td><td class="dev">V rozvoji</td><td class="no">Stagnuje</td></tr>
-        <tr><td>ERP integrace (Pohoda, Helios…)</td><td class="dev">V rozvoji</td><td class="no">Stagnuje</td></tr>
-        <tr><td>Marketplace (BASE)</td><td class="dev">V plánu</td><td class="no">NE</td></tr>
-        <tr><td>Limity produktů / návštěvnosti</td><td class="yes">Žádné ✓</td><td class="no">Definované</td></tr>
-        <tr><td>Produktové feedy (Heureka, GMC)</td><td class="yes">ANO ✓</td><td class="yes">ANO ✓</td></tr>
-        <tr><td>SSL, DDoS ochrana, GDPR</td><td class="yes">ANO ✓</td><td class="yes">ANO ✓</td></tr>
-        <tr><td>Hosting zahrnut v ceně</td><td class="yes">ANO ✓</td><td class="yes">ANO ✓</td></tr>
-      </tbody>
-    </table>
+  <!-- 1. Technické požadavky a platforma -->
+  <div class="chapter reveal">
+    <h4>1. Technické požadavky a platforma</h4>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr><th>Oblast</th><th>Požadavek</th><th>eE 2.0</th><th>Fénix</th><th>Priorita</th><th>Komentář</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Typ řešení</td><td class="req">Pronájmový model (SaaS) s fixní částkou za úpravy na míru</td><td class="status yes">ANO</td><td class="status yes">ANO</td><td class="prio"></td><td class="comment"></td></tr>
+          <tr><td>Hosting a infrastruktura</td><td class="req">Kompletní služby, zálohování a správa přes partnery</td><td class="status">UVT</td><td class="status better">VS Hosting</td><td class="prio"></td><td class="comment"></td></tr>
+          <tr><td>Aktualizace systému</td><td class="req">Aktualizace zajišťuje dodavatel bez zásahu zákazníka</td><td class="status yes">ANO</td><td class="status yes">ANO</td><td class="prio"></td><td class="comment"></td></tr>
+          <tr><td>Dostupnost služby</td><td class="req">Garantovaná dostupnost (v %) + kompenzace</td><td class="status no">99,3 %</td><td class="status better">99,9 %</td><td class="prio"></td><td class="comment"></td></tr>
+          <tr><td>Responzivita</td><td class="req">Plně responzivní řešení (mobil, tablet, desktop)</td><td class="status yes">ANO</td><td class="status yes">ANO</td><td class="prio"></td><td class="comment"></td></tr>
+          <tr><td>Výkon (Core Web Vitals)</td><td class="req">Splnění standardů Core Web Vitals</td><td class="status no">NE</td><td class="status yes">ANO</td><td class="prio"></td><td class="comment"></td></tr>
+          <tr><td>Customizace</td><td class="req">Úpravy funkčnosti na míru bez zásahu do jádra</td><td class="status yes">ANO</td><td class="status yes">ANO</td><td class="prio"></td><td class="comment"></td></tr>
+          <tr><td>Export dat</td><td class="req">Export CSV napříč platformou</td><td class="status no">NE</td><td class="status dev">ROZVOJ</td><td class="prio">3.</td><td class="comment">Platforma umožňuje export dat napříč platformou.</td></tr>
+          <tr><td>API</td><td class="req">API s dokumentací s možností veřejné části</td><td class="status no">NE</td><td class="status yes">ANO</td><td class="prio"></td><td class="comment">Fénix je postaven na API a bude mnohem flexibilnější při rozvoji a podpoře nových technologií.</td></tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-</section>
 
-<!-- DETAILY -->
-<section id="detaily">
-  <div class="section-label reveal">Podrobněji</div>
-  <h2 class="section-title reveal">Co konkrétně Fénix umí lépe</h2>
-  <p class="section-sub reveal">Oblasti, kde je rozdíl nejvíce znatelný pro klienty i vývojový tým.</p>
+  <!-- 2. Lokalizace a mezinárodní prodej -->
+  <div class="chapter reveal">
+    <h4>2. Lokalizace a mezinárodní prodej</h4>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr><th>Oblast</th><th>Požadavek</th><th>eE 2.0</th><th>Fénix</th><th>Priorita</th><th>Komentář</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Jazykové mutace</td><td class="req">Podpora vícejazyčnosti (CZ, SK, PL, EN, DE)</td><td class="status yes">ANO</td><td class="status dev">ROZVOJ</td><td class="prio">1.</td><td class="comment">Dokončujeme plnou podporu ve všech modulech.</td></tr>
+          <tr><td>Země doručení</td><td class="req">Nastavení prodeje na libovolnou zemi doručení</td><td class="status yes">ANO</td><td class="status yes">ANO</td><td class="prio"></td><td class="comment"></td></tr>
+          <tr><td>Víceměnovost</td><td class="req">Podpora více měn</td><td class="status yes">ANO</td><td class="status yes">ANO</td><td class="prio"></td><td class="comment"></td></tr>
+          <tr><td>Převod měn dle kurzu</td><td class="req">Statický nebo automatický kurz</td><td class="status yes">ANO</td><td class="status dev">ROZVOJ</td><td class="prio">1.</td><td class="comment"></td></tr>
+          <tr><td>Daňová pravidla</td><td class="req">Nastavení DPH dle země</td><td class="status yes">ANO</td><td class="status yes">ANO</td><td class="prio"></td><td class="comment">OSS režim bude podporován v integracích.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 
-  <div class="features-grid">
-    <div class="feature-block reveal">
-      <h3><span>⚙️</span> Technologie & výkon</h3>
-      <ul class="feature-list">
-        <li>API-first přístup – flexibilita pro AI a vlastní vývoj</li>
-        <li>Webhooks pro real-time napojení třetích stran</li>
-        <li>Core Web Vitals 90+ oproti nesplňujícímu standardu</li>
-        <li>Dostupnost 99,9 % díky VS Hosting infrastruktuře</li>
-        <li>Násobně vyšší výkon při velkém objemu produktů</li>
-      </ul>
+  <!-- 3. Produktový katalog -->
+  <div class="chapter reveal">
+    <h4>3. Produktový katalog</h4>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr><th>Oblast</th><th>Požadavek</th><th>eE 2.0</th><th>Fénix</th><th>Priorita</th><th>Komentář</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Podpora obrázků nové generace</td><td class="req">WebP a další moderní formáty</td><td class="status no">NE</td><td class="status yes">ANO</td><td class="prio"></td><td class="comment"></td></tr>
+          <tr><td>Video v galerii produktu</td><td class="req">Krátká videa a animace v detailu</td><td class="status no">NE</td><td class="status yes">ANO</td><td class="prio"></td><td class="comment"></td></tr>
+          <tr><td>Přílohy</td><td class="req">PDF návody a další soubory u produktu</td><td class="status yes">ANO</td><td class="status yes">ANO</td><td class="prio"></td><td class="comment"></td></tr>
+          <tr><td>Import z Heureka feedu</td><td class="req">Hromadný import (popisy, ceny, parametry, SKU)</td><td class="status yes">ANO</td><td class="status dev">ROZVOJ</td><td class="prio"></td><td class="comment">Import z XML ano, v rozvoji i pravidelný import z XML.</td></tr>
+          <tr><td>Stav doručení</td><td class="req">&mdash;</td><td class="status yes">ANO</td><td class="status yes">ANO</td><td class="prio"></td><td class="comment">Nově nastavení barvy stavu.</td></tr>
+          <tr><td>Filtrování</td><td class="req">Parametrické filtry (výrobce, kapacita atd.)</td><td class="status yes">ANO</td><td class="status yes">ANO</td><td class="prio"></td><td class="comment">Výrazně rychlejší (Elastic) a vlastní filtrování na úrovni kategorie.</td></tr>
+          <tr><td>Vyhledávání</td><td class="req">Fulltext s našeptávačem produktů a kategorií</td><td class="status yes">ANO</td><td class="status yes">ANO</td><td class="prio"></td><td class="comment">Výrazně rychlejší, založené na Elastic.</td></tr>
+          <tr><td>Hlídací pes</td><td class="req">Notifikace dostupnosti produktu</td><td class="status no">NE</td><td class="status dev">ROZVOJ</td><td class="prio">3.</td><td class="comment">Při požadavku prvního klienta.</td></tr>
+          <tr><td>Sdílení produktů</td><td class="req">Funkce sdílení produktů</td><td class="status yes">ANO</td><td class="status dev">ROZVOJ</td><td class="prio">2.</td><td class="comment"></td></tr>
+          <tr><td>Porovnání produktů</td><td class="req">Funkce porovnání produktů</td><td class="status yes">ANO</td><td class="status dev">ROZVOJ</td><td class="prio">2.</td><td class="comment"></td></tr>
+          <tr><td>Cross-sell / upsell</td><td class="req">Související a alternativní produkty</td><td class="status yes">ANO</td><td class="status yes">ANO</td><td class="prio"></td><td class="comment"></td></tr>
+          <tr><td>Technické parametry</td><td class="req">Práce s technickými parametry</td><td class="status yes">ANO</td><td class="status yes">ANO</td><td class="prio"></td><td class="comment">Výrazně zjednodušen celý proces práce s parametry a variantami.</td></tr>
+          <tr><td>Značka</td><td class="req">&mdash;</td><td class="status yes">ANO</td><td class="status yes">ANO</td><td class="prio"></td><td class="comment">Nově rozšířená funkčnost o určení TOP značek.</td></tr>
+          <tr><td>Produktové štítky</td><td class="req">Stavy (Novinka, Výprodej apod.)</td><td class="status yes">ANO</td><td class="status yes">ANO</td><td class="prio"></td><td class="comment">Vlastní barvy štítků v adminu.</td></tr>
+        </tbody>
+      </table>
     </div>
-    <div class="feature-block reveal">
-      <h3><span>🖼️</span> Produktový katalog</h3>
-      <ul class="feature-list">
-        <li>Podpora moderních formátů obrázků (WebP a další)</li>
-        <li>Video přímo v galerii produktového detailu</li>
-        <li>Výrazně rychlejší parametrické filtrování</li>
-        <li>Rychlejší fulltext s inteligentním našeptávačem</li>
-        <li>Zjednodušená správa technických parametrů a variant</li>
-      </ul>
+  </div>
+
+  <!-- 4. Košík a objednávkový proces -->
+  <div class="chapter reveal">
+    <h4>4. Košík a objednávkový proces</h4>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr><th>Oblast</th><th>Požadavek</th><th>eE 2.0</th><th>Fénix</th><th>Priorita</th><th>Komentář</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Jednokroková pokladna</td><td class="req">&mdash;</td><td class="status no">NE</td><td class="status custom">CUSTOM</td><td class="prio"></td><td class="comment">Na 2.0 nerealizovatelné, pro Fénix možné jako velký custom.</td></tr>
+          <tr><td>Pokladna</td><td class="req">Počet kroků v pokladně</td><td class="status no">4 kroky</td><td class="status better">3 kroky</td><td class="prio"></td><td class="comment"></td></tr>
+          <tr><td>Cross-sell / upsell v košíku</td><td class="req">Doporučené produkty v košíku</td><td class="status yes">ANO</td><td class="status dev">ROZVOJ</td><td class="prio">3.</td><td class="comment"></td></tr>
+          <tr><td>Uložený / opuštěný košík</td><td class="req">Uložení a obnovení košíku</td><td class="status yes">ANO</td><td class="status yes">ANO</td><td class="prio"></td><td class="comment">Košík se ukládá sám na daném zařízení a prohlížeči.</td></tr>
+          <tr><td>Uživatelské preference</td><td class="req">Uložené platební a dopravní preference</td><td class="status no">NE</td><td class="status custom">CUSTOM</td><td class="prio"></td><td class="comment">Megabooks mají v rozvojovém plánu.</td></tr>
+          <tr><td>Vlastní stav objednávky</td><td class="req">Přidání vlastního stavu objednávky</td><td class="status custom">CUSTOM</td><td class="status dev">ROZVOJ</td><td class="prio">3.</td><td class="comment">Vždy je potřeba zvážit navazující akce.</td></tr>
+          <tr><td>Klientský účet / zóna</td><td class="req">Tvorba zákaznického účtu a přihlášení</td><td class="status yes">ANO</td><td class="status dev">ROZVOJ</td><td class="prio">1.</td><td class="comment">E-shop již nebude automaticky vytvářet účet klienta.</td></tr>
+          <tr><td>Zpracování objednávky</td><td class="req">&mdash;</td><td class="status yes">ANO</td><td class="status yes">ANO</td><td class="prio"></td><td class="comment">Možnost barevného odlišení stavu objednávky.</td></tr>
+          <tr><td>Číslování objednávky</td><td class="req">&mdash;</td><td class="status yes">ANO</td><td class="status yes">ANO</td><td class="prio"></td><td class="comment">Rozšíření o auto-prefix na základě datumu.</td></tr>
+          <tr><td>Obchodní podmínky</td><td class="req">Modul, který verzuje dokumenty</td><td class="status yes">ANO</td><td class="status yes">ANO</td><td class="prio"></td><td class="comment"></td></tr>
+          <tr><td>B2B režim</td><td class="req">Firemní účty, individuální ceníky, objednávky na fakturu</td><td class="status yes">ANO</td><td class="status dev">ROZVOJ</td><td class="prio">2.</td><td class="comment">Abrasiv, Frpneu i Mega budou obsahovat.</td></tr>
+        </tbody>
+      </table>
     </div>
-    <div class="feature-block reveal">
-      <h3><span>🛒</span> Nákupní proces & B2B</h3>
-      <ul class="feature-list">
-        <li>3-krokový checkout místo 4 kroků</li>
-        <li>Košík se automaticky ukládá na zařízení</li>
-        <li>Sleva na dopravu a platbu (eE 2.0 neumí)</li>
-        <li>B2B modul: firemní účty, individuální ceníky, faktury</li>
-        <li>Vlastní barvy štítků produktů přímo v adminu</li>
-      </ul>
+  </div>
+
+  <!-- 5. Cenotvorba -->
+  <div class="chapter reveal">
+    <h4>5. Cenotvorba</h4>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr><th>Oblast</th><th>Požadavek</th><th>eE 2.0</th><th>Fénix</th><th>Priorita</th><th>Komentář</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Cenové sloupce</td><td class="req">Podpora více cenových sloupců</td><td class="status yes">ANO</td><td class="status yes">ANO</td><td class="prio"></td><td class="comment">Neomezený počet sloupců pro B2C, jeden pro jednu měnu.</td></tr>
+          <tr><td>Férová cena</td><td class="req">Vyhodnocení nejnižší ceny za 30 dní</td><td class="status yes">ANO</td><td class="status yes">ANO</td><td class="prio"></td><td class="comment">Výrazné zrychlení. Na Fénix nelze vypnout.</td></tr>
+          <tr><td>Slevy na produkt</td><td class="req">Sleva % nebo hodnotou</td><td class="status yes">ANO</td><td class="status yes">ANO</td><td class="prio"></td><td class="comment">Řeší se změnou na produktu.</td></tr>
+          <tr><td>Kriteriální slevy</td><td class="req">Sleva za splnění podmínek</td><td class="status yes">ANO</td><td class="status dev">ROZVOJ</td><td class="prio">1.</td><td class="comment">Fénix obsahuje pouze % slevu v jednom modulu.</td></tr>
+          <tr><td>Slevy na objednávku</td><td class="req">Sleva za splnění podmínek</td><td class="status yes">ANO</td><td class="status dev">ROZVOJ</td><td class="prio">1.</td><td class="comment"></td></tr>
+          <tr><td>Sleva na dopravu / platbu</td><td class="req">Sleva % nebo hodnotou</td><td class="status no">NE</td><td class="status dev">ROZVOJ</td><td class="prio"></td><td class="comment">Oproti eE 2.0 možné i % slevy.</td></tr>
+          <tr><td>DPH</td><td class="req">Podpora různých sazeb DPH</td><td class="status yes">ANO</td><td class="status yes">ANO</td><td class="prio"></td><td class="comment">Vázané na zemi doručení, podpora 0% sazby.</td></tr>
+        </tbody>
+      </table>
     </div>
-    <div class="feature-block reveal">
-      <h3><span>🔗</span> Integrace & škálovatelnost</h3>
-      <ul class="feature-list">
-        <li>ERP napojení: Pohoda, Helios, Money, Vario (v rozvoji)</li>
-        <li>Marketplace BASE (plánováno)</li>
-        <li>Produktové feedy: Heureka, Google Merchant</li>
-        <li>Žádné definované limity produktů ani návštěvnosti</li>
-        <li>Platforma připravena na duplikaci pro více trhů</li>
-      </ul>
+  </div>
+
+  <!-- 6. Platby -->
+  <div class="chapter reveal">
+    <h4>6. Platby</h4>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr><th>Oblast</th><th>Požadavek</th><th>eE 2.0</th><th>Fénix</th><th>Priorita</th><th>Komentář</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Gopay</td><td class="req">Integrace platební brány</td><td class="status yes">ANO</td><td class="status dev">ROZVOJ</td><td class="prio">3.</td><td class="comment"></td></tr>
+          <tr><td>Comgate</td><td class="req">Integrace platební brány</td><td class="status yes">ANO</td><td class="status yes">ANO</td><td class="prio"></td><td class="comment"></td></tr>
+          <tr><td>Gpwebpay</td><td class="req">Integrace platební brány</td><td class="status yes">ANO</td><td class="status no">NE</td><td class="prio"></td><td class="comment"></td></tr>
+          <tr><td>ČSOB</td><td class="req">Integrace platební brány</td><td class="status no">NE</td><td class="status dev">ROZVOJ</td><td class="prio">2.</td><td class="comment"></td></tr>
+          <tr><td>Pluxee</td><td class="req">Benefitní systém</td><td class="status no">NE</td><td class="status dev">ROZVOJ</td><td class="prio">2.</td><td class="comment"></td></tr>
+          <tr><td>Ostatní platební metody</td><td class="req">Dobírka, hotovost, převod (QR), faktura (B2B)</td><td class="status yes">ANO</td><td class="status yes">ANO</td><td class="prio"></td><td class="comment">Stejné použití jako na eE 2.0.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 7. Logistika a doprava -->
+  <div class="chapter reveal">
+    <h4>7. Logistika a doprava</h4>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr><th>Oblast</th><th>Požadavek</th><th>eE 2.0</th><th>Fénix</th><th>Priorita</th><th>Komentář</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Zásilkovna</td><td class="req">Integrace vč. widgetu výdejních míst</td><td class="status yes">ANO</td><td class="status yes">ANO</td><td class="prio"></td><td class="comment"></td></tr>
+          <tr><td>PPL Smart</td><td class="req">Integrace vč. widgetu výdejních míst</td><td class="status yes">ANO</td><td class="status yes">ANO</td><td class="prio"></td><td class="comment"></td></tr>
+          <tr><td>Balíkovna a ČP</td><td class="req">Integrace dopravy</td><td class="status yes">ANO</td><td class="status dev">ROZVOJ</td><td class="prio">1.</td><td class="comment"></td></tr>
+          <tr><td>DPD</td><td class="req">&mdash;</td><td class="status yes">ANO</td><td class="status dev">ROZVOJ</td><td class="prio">2.</td><td class="comment"></td></tr>
+          <tr><td>One by Allegro</td><td class="req">Integrace služby</td><td class="status no">NE</td><td class="status dev">ROZVOJ</td><td class="prio">3.</td><td class="comment">Sledujeme vývoj dopravy.</td></tr>
+          <tr><td>Balíkobot</td><td class="req">Integrace služby</td><td class="status yes">ANO</td><td class="status dev">ROZVOJ</td><td class="prio">1.</td><td class="comment"></td></tr>
+          <tr><td>Generování štítků</td><td class="req">Automatické generování přes Balíkobot</td><td class="status yes">ANO</td><td class="status dev">ROZVOJ</td><td class="prio">1.</td><td class="comment"></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 8. ERP / Účetní systémy -->
+  <div class="chapter reveal">
+    <h4>8. ERP / Účetní systémy</h4>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr><th>Oblast</th><th>Požadavek</th><th>eE 2.0</th><th>Fénix</th><th>Priorita</th><th>Komentář</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Pohoda</td><td class="req">Napojení na Pohodu</td><td class="status yes">ANO</td><td class="status dev">ROZVOJ</td><td class="prio">1.</td><td class="comment">Na této integraci aktuálně pracujeme.</td></tr>
+          <tr><td>Helios Inuvio (Orange)</td><td class="req">Napojení na Helios</td><td class="status yes">ANO</td><td class="status dev">ROZVOJ</td><td class="prio"></td><td class="comment">Zatím nemáme klienta.</td></tr>
+          <tr><td>Vario</td><td class="req">Napojení na Vario</td><td class="status yes">ANO</td><td class="status dev">ROZVOJ</td><td class="prio"></td><td class="comment">Zatím nemáme klienta.</td></tr>
+          <tr><td>Money S4 a S5</td><td class="req">Napojení na Money</td><td class="status no">NE</td><td class="status dev">ROZVOJ</td><td class="prio"></td><td class="comment">První klient megabooks.</td></tr>
+          <tr><td>Custom integrace</td><td class="req">Integrace jiných systémů na míru</td><td class="status yes">ANO</td><td class="status dev">ROZVOJ</td><td class="prio"></td><td class="comment"></td></tr>
+          <tr><td>BASE</td><td class="req">Integrace služby</td><td class="status no">NE</td><td class="status dev">ROZVOJ</td><td class="prio">3.</td><td class="comment"></td></tr>
+          <tr><td>Fakturoid</td><td class="req">Integrace služby</td><td class="status yes">ANO</td><td class="status dev">ROZVOJ</td><td class="prio">1.</td><td class="comment">Těsně před dokončením napojení.</td></tr>
+          <tr><td>Webhooks</td><td class="req">Podpora webhooks a externích integrací</td><td class="status no">NE</td><td class="status yes">ANO</td><td class="prio"></td><td class="comment">Podpora pro nástroje třetích stran pro rychlé notifikace.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 9. Marketing & SEO -->
+  <div class="chapter reveal">
+    <h4>9. Marketing & SEO</h4>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr><th>Oblast</th><th>Požadavek</th><th>eE 2.0</th><th>Fénix</th><th>Priorita</th><th>Komentář</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>SEO nastavení</td><td class="req">Meta tagy, URL struktura, sitemap</td><td class="status yes">ANO</td><td class="status yes">ANO</td><td class="prio"></td><td class="comment">V URL nově segmenty např. /kategorie.</td></tr>
+          <tr><td>Strukturovaná data (schema.org)</td><td class="req">Schema.org</td><td class="status yes">ANO</td><td class="status dev">ROZVOJ</td><td class="prio">1.</td><td class="comment">Novější formát JSON na Fénix.</td></tr>
+          <tr><td>Produktové SEO</td><td class="req">Individuální optimalizace produktu</td><td class="status yes">ANO</td><td class="status yes">ANO</td><td class="prio"></td><td class="comment"></td></tr>
+          <tr><td>Newsletter</td><td class="req">Newsletter nástroje (volitelné)</td><td class="status yes">ANO</td><td class="status yes">ANO</td><td class="prio"></td><td class="comment">Fénix zatím podporuje Ecomail.</td></tr>
+          <tr><td>Slevové kupóny</td><td class="req">Jednorázové / hodnotové kupóny</td><td class="status yes">ANO</td><td class="status dev">ROZVOJ</td><td class="prio">1.</td><td class="comment"></td></tr>
+          <tr><td>Věrnostní program</td><td class="req">Podpora věrnostního programu</td><td class="status no">NE</td><td class="status dev">ROZVOJ</td><td class="prio">3.</td><td class="comment"></td></tr>
+          <tr><td>Marketingové nástroje</td><td class="req">Napojení na Google Ads, Meta Ads</td><td class="status yes">ANO</td><td class="status dev">ROZVOJ</td><td class="prio">1.</td><td class="comment">Možnost napojit vše přes GTM; přímá podpora META zatím ne.</td></tr>
+          <tr><td>Produktové feedy</td><td class="req">Heureka, Google Merchant, Zboží.cz</td><td class="status yes">ANO</td><td class="status yes">ANO</td><td class="prio"></td><td class="comment"></td></tr>
+          <tr><td>Urgentní hláška</td><td class="req">Hláška nad hlavičkou</td><td class="status yes">ANO (1)</td><td class="status better">ANO (3)</td><td class="prio"></td><td class="comment">Více typů důležitosti, více hlášek, omezení datem.</td></tr>
+          <tr><td>Statické stránky</td><td class="req">Obsahové stránky pro LP nebo jiný obsah</td><td class="status yes">ANO</td><td class="status yes">ANO</td><td class="prio"></td><td class="comment">Zásadní změna – tvorba pomocí webbuilderu Kolibřík.</td></tr>
+          <tr><td>Novinky</td><td class="req">Samostatná část pro aktuální obsah</td><td class="status yes">ANO</td><td class="status yes">ANO</td><td class="prio"></td><td class="comment">Kolibřík + přidané štítky.</td></tr>
+          <tr><td>Prodejní argumenty</td><td class="req">&mdash;</td><td class="status yes">ANO</td><td class="status yes">ANO</td><td class="prio"></td><td class="comment">Zjednodušené možnosti nastavení oproti eE 2.0.</td></tr>
+          <tr><td>Heureka ověřeno</td><td class="req">&mdash;</td><td class="status yes">ANO</td><td class="status yes">ANO</td><td class="prio"></td><td class="comment"></td></tr>
+          <tr><td>Formuláře</td><td class="req">Tvorba zákaznických formulářů v systému</td><td class="status no">NE</td><td class="status no">NE</td><td class="prio"></td><td class="comment">Nestandardní formuláře stále custom.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 10. Bezpečnost -->
+  <div class="chapter reveal">
+    <h4>10. Bezpečnost</h4>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr><th>Oblast</th><th>Požadavek</th><th>eE 2.0</th><th>Fénix</th><th>Priorita</th><th>Komentář</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>SSL</td><td class="req">SSL certifikát v ceně</td><td class="status yes">ANO</td><td class="status yes">ANO</td><td class="prio"></td><td class="comment"></td></tr>
+          <tr><td>Ochrana</td><td class="req">Ochrana proti DDoS, WAF</td><td class="status yes">ANO</td><td class="status yes">ANO</td><td class="prio"></td><td class="comment">Role hostingu – silnější a rychlejší podpora.</td></tr>
+          <tr><td>Role a práva</td><td class="req">Uživatelské role a oprávnění v administraci</td><td class="status yes">ANO</td><td class="status dev">ROZVOJ</td><td class="prio">2.</td><td class="comment">Práva na jednotlivé produkty budou ve Fénix mnohem podrobnější.</td></tr>
+          <tr><td>Zálohování</td><td class="req">Frekvence záloh</td><td class="status">Denní</td><td class="status">Denní</td><td class="prio"></td><td class="comment"></td></tr>
+          <tr><td>Incident management</td><td class="req">24/7 monitoring a notifikace výpadků</td><td class="status yes">ANO</td><td class="status dev">ROZVOJ</td><td class="prio">1.</td><td class="comment">Fénix rozšířen o monitoring služeb třetích stran.</td></tr>
+          <tr><td>GDPR</td><td class="req">Cookie lišta, správa souhlasů, DPA, přístupnost</td><td class="status yes">ANO</td><td class="status yes">ANO</td><td class="prio"></td><td class="comment">Přístupnost má samostatný modul na Fénix.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 11. Podpora a SLA -->
+  <div class="chapter reveal">
+    <h4>11. Podpora a SLA</h4>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr><th>Oblast</th><th>Požadavek</th><th>eE 2.0</th><th>Fénix</th><th>Priorita</th><th>Komentář</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Dostupnost podpory</td><td class="req">Kanály (mail, tel., chat), jazyk</td><td class="status yes">ANO</td><td class="status yes">ANO</td><td class="prio"></td><td class="comment">Podpora zůstává stejná.</td></tr>
+          <tr><td>Reakční doby</td><td class="req">Definované reakční a řešící časy</td><td class="status yes">ANO</td><td class="status yes">ANO</td><td class="prio"></td><td class="comment">Doba vyřešení dle urgence A/B/C → 16/35/45.</td></tr>
+          <tr><td>Dokumentace</td><td class="req">Dostupná dokumentace, FAQ, znalostní báze</td><td class="status yes">ANO</td><td class="status dev">ROZVOJ</td><td class="prio"></td><td class="comment">Uživatelská dokumentace postupně vzniká.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 12. Cena a obchodní model -->
+  <div class="chapter reveal">
+    <h4>12. Cena a obchodní model</h4>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr><th>Oblast</th><th>Požadavek</th><th>eE 2.0</th><th>Fénix</th><th>Priorita</th><th>Komentář</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Licenční model</td><td class="req">Měsíční paušál / jednorázová licence / kombinace</td><td class="status">Kombinace</td><td class="status">Kombinace</td><td class="prio"></td><td class="comment">Princip kalkulace zůstává stejný.</td></tr>
+          <tr><td>Minimální závazek</td><td class="req">Minimální doba závazku</td><td class="status yes">NE</td><td class="status yes">NE</td><td class="prio"></td><td class="comment">Není stanoven žádný závazek.</td></tr>
+          <tr><td>Hosting</td><td class="req">Je hosting zahrnut v ceně?</td><td class="status yes">ANO</td><td class="status yes">ANO</td><td class="prio"></td><td class="comment"></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 13. Škálovatelnost a budoucí rozvoj -->
+  <div class="chapter reveal">
+    <h4>13. Škálovatelnost a budoucí rozvoj</h4>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr><th>Oblast</th><th>Požadavek</th><th>eE 2.0</th><th>Fénix</th><th>Priorita</th><th>Komentář</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Výkon</td><td class="req">Limity produktů / návštěvnosti</td><td class="status no">NE</td><td class="status yes">NE</td><td class="prio"></td><td class="comment">Tam kde se 2.0 zadýchávala se Fénix teprve rozpaluje. Zvládne násobně více dat rychleji.</td></tr>
+          <tr><td>Škálování</td><td class="req">Expanze i zvyšování počtu produktů</td><td class="status yes">ANO</td><td class="status dev">ROZVOJ</td><td class="prio">2.</td><td class="comment">Fénix lze provozovat v několika mutacích pro různé trhy i duplikovat.</td></tr>
+          <tr><td>Multistore</td><td class="req">Více e-shopů pod jednou administrací</td><td class="status no">NE</td><td class="status">??</td><td class="prio"></td><td class="comment">Dle zájmu zákazníka na zvážení.</td></tr>
+          <tr><td>Marketplace doplňky</td><td class="req">Marketplace rozšíření / doplňkové moduly</td><td class="status no">NE</td><td class="status dev">ROZVOJ</td><td class="prio">3.</td><td class="comment">Podpora přes doplněk třetí strany, pravděpodobně BASE.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- LEGENDA -->
+  <div class="legend reveal">
+    <h3>Legenda</h3>
+    <div class="legend-item"><span class="legend-dot" style="background:#4dd98a"></span> <span class="yes">ANO</span> – plně podporováno</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#ff6b6b"></span> <span class="no">NE</span> – není podporováno</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#f1840e"></span> <span class="dev">ROZVOJ</span> – v aktivním vývoji</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#c79aff"></span> <span class="custom">CUSTOM</span> – řešeno na míru</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#009FE3"></span> <span class="better">Lepší parametr</span> – výhoda platformy</div>
+    <div style="width:100%; margin-top:.8rem; color:var(--white70); font-size:.85rem; line-height:1.6;">
+      <strong style="color:var(--blue)">Priority vývoje:</strong>
+      &nbsp;<strong style="color:var(--orange)">1.</strong> Nejvyšší – postupně realizujeme
+      &nbsp;|&nbsp; <strong style="color:var(--orange)">2.</strong> Střední – plánujeme dle potřeb klientů
+      &nbsp;|&nbsp; <strong style="color:var(--orange)">3.</strong> Uvažované rozšíření
     </div>
   </div>
 </section>
@@ -449,27 +655,25 @@
       <div class="check-item">Podpora WebP a videa v katalogu</div>
       <div class="check-item">Aktivní rozvoj B2B a ERP napojení</div>
       <div class="check-item">Škálovatelnost bez limitů</div>
-      <div class="check-item">Připravena na AI a automatizaci</div>
+      <div class="check-item">Připraveno na AI a automatizaci</div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
-  <div class="footer-brand">
+  <div>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1192.24 507.8" style="height:26px;width:auto;" aria-label="eBRANA"><defs><style>.ebr-logo{fill:#fff;}</style></defs><path class="ebr-logo" d="M457.3,367.21c-39.87,71.28-116.09,119.58-203.4,119.58-128.42,0-232.89-104.48-232.89-232.9S125.48,21,253.89,21c87.88,0,164.55,48.94,204.19,120.99h23.67C440.31,57.96,353.75,0,253.89,0,113.9,0,0,113.9,0,253.9s113.9,253.9,253.89,253.9c99.3,0,185.45-57.31,227.16-140.58h-23.75Z"/><path class="ebr-logo" d="M426.88,367.21c-37.01,56.3-100.72,93.56-172.99,93.56-114.07,0-206.87-92.8-206.87-206.87S139.82,47.02,253.89,47.02c72.87,0,137.05,37.87,173.92,94.97h8.27c-37.69-61.13-105.25-101.97-182.18-101.97-117.93,0-213.87,95.94-213.87,213.88s95.94,213.87,213.87,213.87c76.34,0,143.45-40.21,181.3-100.56h-8.32Z"/><path class="ebr-logo" d="M275.21,238.36c0-8.75-7.09-15.12-17.96-15.12-12.05,0-18.67,8.27-19.61,15.12h37.57ZM321.76,267.66h-83.65c.95,8.75,11.34,14.18,21.27,14.18s17.61-.87,23.76-7l35.31,17.88c-10.87,17.72-32.85,29.06-60.49,29.06-36.15,0-70.42-22.92-70.42-66.87,0-41.12,30.95-66.88,69.23-66.88s65.46,28.83,65.46,68.05c0,4.02-.24,8.75-.47,11.58Z"/><path class="ebr-logo" d="M392.47,270.52v22.68h16.78c8.74,0,14.89-4.02,14.89-11.58,0-8.98-10.4-11.1-17.25-11.1h-14.42ZM392.47,213.81v20.56h15.12c7.8,0,13.47-3.54,13.47-11.1,0-6.38-5.91-9.45-14.65-9.45h-13.94ZM449.42,250.43c16.07,3.78,31.43,17.26,31.43,38.05,0,36.62-32.37,48.91-64.98,48.91h-75.85v-167.29h68.76c27.18,0,65.22,5.67,65.22,44.42,0,17.96-9.92,29.54-24.57,35.21v.71h-.01Z"/><path class="ebr-logo" d="M557.75,240.74c7.8,0,19.61-1.88,19.61-13.94s-10.16-13-17.25-13h-13.47v26.94h11.11ZM494.2,170.1h70.65c33.08,0,67.58,11.81,67.58,54.35,0,20.32-10.63,36.62-29.3,45.13l42.53,67.82h-64.74l-32.14-59.78h-1.65v59.78h-52.93v-167.3Z"/><path class="ebr-logo" d="M726.43,269.81l13.71-41.35,13.47,41.35h-27.18ZM770.86,170.1h-59.78l-65.93,167.29h59.55l8.27-24.58h53.17l8.74,24.58h61.2l-65.22-167.29Z"/><polygon class="ebr-logo" points="899.2 170.1 946.93 254.93 947.88 254.93 945.52 170.1 998.92 170.1 998.92 337.39 941.5 337.39 895.19 257.52 894.24 257.52 896.6 337.39 843.19 337.39 843.19 170.1 899.2 170.1"/><path class="ebr-logo" d="M1096.31,228.46l-13.71,41.35h27.18l-13.47-41.35ZM1067.24,170.1h59.78l65.22,167.29h-61.2l-8.74-24.58h-53.17l-8.27,24.58h-59.55l65.93-167.29Z"/><polygon class="ebr-logo" points="714.62 157.51 740.84 123.49 790.94 123.49 754.55 157.51 714.62 157.51"/></svg>
   </div>
-  <p>Fenix e-commerce platforma © 2025</p>
+  <p>Fénix e-commerce platforma © 2025</p>
   <p style="color:var(--orange);">Interní přehled pro obchodní a projektový tým</p>
 </footer>
 
 <script>
-  // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver((entries) => {
     entries.forEach((e, i) => {
       if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        setTimeout(() => e.target.classList.add('visible'), i * 50);
         io.unobserve(e.target);
       }
     });

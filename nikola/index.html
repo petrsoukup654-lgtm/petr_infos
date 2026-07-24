@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Nikola Bartáková — trenérka &amp; výživová poradkyně</title>
+    <meta
+      name="description"
+      content="Trenérka a výživová poradkyně z Prahy. Individuální trénink, překážkové běhy (OCR), jídelníček, reformer pilates, technika běhu a sport pro děti."
+    />
+    <meta name="theme-color" content="#faf6ef" />
+
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Nikola Bartáková — trenérka &amp; výživová poradkyně"
+    />
+    <meta
+      property="og:description"
+      content="Překážky jsou tvůj trénink. Postavím Ti trénink i jídelníček tak, aby měly smysl."
+    />
+    <meta property="og:image" content="images/hero.jpg" />
+    <meta property="og:locale" content="cs_CZ" />
+
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23faf6ef'/%3E%3Ctext x='50' y='62' text-anchor='middle' font-family='sans-serif' font-weight='800' font-size='34' fill='%23e4572e'%3ENB%3C/text%3E%3C/svg%3E"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&amp;family=Work+Sans:wght@400;500;600;700&amp;display=swap"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#obsah">Přeskočit na obsah</a>
+
+    <header class="site-header">
+      <a class="brand" href="#uvod">
+        <span class="brand__name">Nikola Bartáková</span>
+        <span class="brand__role">Trenérka &amp; výživová poradkyně</span>
+      </a>
+
+      <button
+        class="nav-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="hlavni-navigace"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+        <span class="visually-hidden">Menu</span>
+      </button>
+
+      <nav class="main-nav" id="hlavni-navigace" aria-label="Hlavní navigace">
+        <a href="#uvod" class="is-active">Úvod</a>
+        <a href="#sluzby">Služby</a>
+        <a href="#o-mne">O mně</a>
+        <a href="#shop">Shop</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
+
+      <a class="btn btn--primary btn--sm" href="mailto:info@nikolabartakova.cz?subject=Rezervace%20tréninku"
+        >Rezervovat trénink</a
+      >
+    </header>
+
+    <main id="obsah">
+      <section class="hero" id="uvod">
+        <div class="hero__content">
+          <p class="hero__kicker eyebrow">Praha · OCR · individuální trénink</p>
+
+          <h1 class="hero__title">
+            Překážky jsou<br /><em>tvůj trénink</em>
+          </h1>
+
+          <p class="hero__lead">
+            Ráda sním sny, abych si je splnila, a objevuji překážky, abych je
+            zdolala. Postavím Ti trénink i jídelníček tak, aby měly smysl — ať
+            začínáš, nebo míříš na Army Run.
+          </p>
+
+          <div class="hero__actions">
+            <a class="btn btn--primary btn--lg" href="#sluzby">Chci vědět více</a>
+            <a class="btn btn--secondary btn--lg" href="#sluzby">Nabízené služby</a>
+          </div>
+
+          <ul class="hero__stats">
+            <li class="stat">
+              <span class="stat__value">10</span>
+              <span class="stat__label">osob max. na lekci</span>
+            </li>
+            <li class="stat">
+              <span class="stat__value">8</span>
+              <span class="stat__label">týdnů plán</span>
+            </li>
+            <li class="stat">
+              <span class="stat__value">4+</span>
+              <span class="stat__label">roky u dětských kurzů</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="hero__media">
+          <img
+            src="images/hero.jpg"
+            alt="Nikola Bartáková ve sportovním oblečení opřená o betonovou zeď"
+            width="1600"
+            height="1068"
+            fetchpriority="high"
+          />
+          <p class="hero__badge">Mgr. Nikola Bartáková · FTVS</p>
+        </div>
+      </section>
+
+      <section class="services" id="sluzby">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Nabízené služby</span>
+            <h2 class="section-title">S čím Ti pomůžu</h2>
+          </div>
+          <p class="section-head__note">
+            Vyber si formu, která Ti sedne. Vše se dá kombinovat — trénink,
+            jídelníček i technika běhu.
+          </p>
+        </div>
+
+        <div class="services__grid">
+          <article class="service">
+            <span class="service__number" aria-hidden="true">01</span>
+            <div>
+              <h3 class="service__title">Překážkové běhy / OCR</h3>
+              <p class="service__desc">
+                Kondiční kruhový trénink v army stylu, max. 10 osob na lekci.
+                Příprava na Army Run.
+              </p>
+            </div>
+          </article>
+
+          <article class="service">
+            <span class="service__number" aria-hidden="true">02</span>
+            <div>
+              <h3 class="service__title">Individuální trénink</h3>
+              <p class="service__desc">
+                Čas věnovaný pouze Vám — plán, technika a zpětná vazba na každém
+                tréninku.
+              </p>
+            </div>
+          </article>
+
+          <article class="service">
+            <span class="service__number" aria-hidden="true">03</span>
+            <div>
+              <h3 class="service__title">Jídelníček</h3>
+              <p class="service__desc">
+                Mým cílem je naučit Tě správně jíst. Žádné hladovění, návod na
+                chutný a zdravý život.
+              </p>
+            </div>
+          </article>
+
+          <article class="service">
+            <span class="service__number" aria-hidden="true">04</span>
+            <div>
+              <h3 class="service__title">Reformer pilates</h3>
+              <p class="service__desc">
+                Funkční cvičení pro pohyb bez bolesti — vhodné bez ohledu na věk
+                a kondici.
+              </p>
+            </div>
+          </article>
+
+          <article class="service">
+            <span class="service__number" aria-hidden="true">05</span>
+            <div>
+              <h3 class="service__title">Technika běhu</h3>
+              <p class="service__desc">
+                Kurz, po kterém běháš ekonomičtěji, déle a bez bolesti kolen.
+              </p>
+            </div>
+          </article>
+
+          <article class="service">
+            <span class="service__number" aria-hidden="true">06</span>
+            <div>
+              <h3 class="service__title">Sport pro děti</h3>
+              <p class="service__desc">
+                Bruslení od 4 let, pohybové kurzy pro prvňáčky a sportovní
+                tábory v létě.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="about" id="o-mne">
+        <div class="about__media">
+          <img
+            src="images/about.jpg"
+            alt="Nikola Bartáková sedící na břehu řeky"
+            width="1600"
+            height="1067"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="about__content">
+          <span class="eyebrow">O mně</span>
+          <h2 class="about__title">Zajistím, aby Tvůj trénink měl smysl</h2>
+          <p class="about__text">
+            Jsem Nikola, absolventka FTVS a trenérka, která věří na jednoduché
+            věci dělané dobře. Trénuji lidi, kteří chtějí být silnější v běžném
+            životě, i ty, co míří na překážkový závod. Kromě tréninku učím i to,
+            co se děje v kuchyni — bez zázračných diet.
+          </p>
+          <blockquote class="about__quote">
+            Ráda sním sny, abych si je splnila
+          </blockquote>
+          <div class="about__actions">
+            <a class="btn btn--primary btn--md" href="#kontakt">Více o mně</a>
+            <a class="btn btn--inverse btn--md" href="#kontakt">Napsali o mně</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="shop" id="shop">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Shop</span>
+            <h2 class="section-title">Tréninkové plány</h2>
+          </div>
+          <a
+            class="shop__link"
+            href="mailto:info@nikolabartakova.cz?subject=Objednávka%20tréninkového%20plánu"
+            >Objednávka e-mailem →</a
+          >
+        </div>
+
+        <div class="shop__grid">
+          <article class="card">
+            <h3 class="card__title">Plán pro začátečníky</h3>
+            <p class="card__desc">
+              8 týdnů, 3 tréninky v týdnu, video ke každému cviku. Pro rozjezd
+              bez zranění.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3 class="card__title">OCR příprava</h3>
+            <p class="card__desc">
+              Silový a kondiční blok mířený na překážky — hmaty, lezení, běh do
+              kopce.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3 class="card__title">Jídelníček + plán</h3>
+            <p class="card__desc">
+              Balíček tréninku a stravy s videi. Nejčastěji volená kombinace.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="partners" aria-label="Spolupráce">
+        <span class="eyebrow">Spolupracuji s</span>
+        <ul class="partners__list">
+          <li>Multisport</li>
+          <li>Army Run</li>
+          <li>Stream.cz</li>
+          <li>Firemní wellness</li>
+        </ul>
+      </section>
+
+      <section class="cta" id="kontakt">
+        <div>
+          <h2 class="cta__title">První trénink domluvíme do 24 hodin</h2>
+          <p class="cta__text">
+            Napiš mi, co chceš zvládnout. Zbytek vymyslím já.
+          </p>
+        </div>
+        <a
+          class="btn btn--inverse btn--lg"
+          href="mailto:info@nikolabartakova.cz?subject=Rezervace%20tréninku"
+          >Rezervovat trénink</a
+        >
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="site-footer__top">
+        <div>
+          <div class="site-footer__brand">Nikola Bartáková</div>
+          <p class="site-footer__tagline">
+            Trenérka, výživová poradkyně a OCR nadšenkyně. Praha a okolí.
+          </p>
+        </div>
+
+        <div class="site-footer__col">
+          <h3>Služby</h3>
+          <ul>
+            <li><a href="#sluzby">Překážkové běhy</a></li>
+            <li><a href="#sluzby">Individuální trénink</a></li>
+            <li><a href="#sluzby">Jídelníček</a></li>
+            <li><a href="#sluzby">Reformer pilates</a></li>
+          </ul>
+        </div>
+
+        <div class="site-footer__col">
+          <h3>Pro děti</h3>
+          <ul>
+            <li><a href="#sluzby">Bruslení od 4 let</a></li>
+            <li><a href="#sluzby">Pohybové kurzy</a></li>
+            <li><a href="#sluzby">Sportovní tábory</a></li>
+          </ul>
+        </div>
+
+        <div class="site-footer__col">
+          <h3>Kontakt</h3>
+          <ul>
+            <li>
+              <a class="is-strong" href="mailto:info@nikolabartakova.cz"
+                >info@nikolabartakova.cz</a
+              >
+            </li>
+            <li>
+              <a class="is-strong" href="tel:+420775125388">+420 775 125 388</a>
+            </li>
+            <li>
+              <a href="https://www.nikolabartakova.cz"
+                >www.nikolabartakova.cz</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="site-footer__bottom">
+        <span>© 2026 Nikola Bartáková</span>
+        <span>Verze 2 · návrh webu</span>
+      </div>
+    </footer>
+
+    <script>
+      // Mobilní menu
+      const toggle = document.querySelector(".nav-toggle");
+      const nav = document.querySelector(".main-nav");
+
+      toggle.addEventListener("click", () => {
+        const open = toggle.getAttribute("aria-expanded") === "true";
+        toggle.setAttribute("aria-expanded", String(!open));
+        nav.classList.toggle("is-open", !open);
+      });
+
+      // Po kliknutí na odkaz menu zavřeme
+      nav.addEventListener("click", (e) => {
+        if (e.target.tagName === "A") {
+          toggle.setAttribute("aria-expanded", "false");
+          nav.classList.remove("is-open");
+        }
+      });
+
+      // Zvýraznění aktivní položky navigace podle scrollu
+      const links = Array.from(nav.querySelectorAll("a"));
+      const sections = links
+        .map((link) => document.querySelector(link.getAttribute("href")))
+        .filter(Boolean);
+
+      if ("IntersectionObserver" in window && sections.length) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              links.forEach((link) =>
+                link.classList.toggle(
+                  "is-active",
+                  link.getAttribute("href") === "#" + entry.target.id
+                )
+              );
+            });
+          },
+          { rootMargin: "-45% 0px -50% 0px" }
+        );
+
+        sections.forEach((section) => observer.observe(section));
+      }
+    </script>
+  </body>
+</html>

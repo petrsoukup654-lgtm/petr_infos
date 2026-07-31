@@ -1,188 +1,131 @@
 <!DOCTYPE html>
 <html lang="cs">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Petr Info</title>
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <style>
-      * { box-sizing: border-box; margin: 0; padding: 0; }
-      body { font-family: Georgia, serif; background: #f9f9f9; color: #333; }
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Petr Soukup — e-commerce, AI a tvorba webů</title>
+    <meta
+      name="description"
+      content="Vysvětlím ti, co ti AI přinese a jak ti pomůže. Bez technického žargónu. E-commerce, AI a tvorba webů."
+    />
+    <meta name="theme-color" content="#faf6ef" />
 
-      nav {
-        background: #2c3e50;
-        padding: 1rem 2rem;
-        display: flex;
-        gap: 2rem;
-      }
-      nav a {
-        color: #ecf0f1;
-        text-decoration: none;
-        font-size: 1rem;
-        cursor: pointer;
-        padding: 0.3rem 0.8rem;
-        border-radius: 4px;
-        transition: background 0.2s;
-      }
-      nav a:hover, nav a.active {
-        background: #3d5166;
-      }
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Petr Soukup — e-commerce, AI a tvorba webů" />
+    <meta
+      property="og:description"
+      content="Vysvětlím ti, co ti AI přinese a jak ti pomůže. Bez technického žargónu. E-commerce, AI a tvorba webů."
+    />
+    <meta property="og:locale" content="cs_CZ" />
 
-      .page {
-        max-width: 800px;
-        margin: 4rem auto;
-        text-align: center;
-        padding: 0 1rem;
-      }
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23faf6ef'/%3E%3Ctext x='50' y='62' text-anchor='middle' font-family='sans-serif' font-weight='800' font-size='34' fill='%23e4572e'%3EPS%3C/text%3E%3C/svg%3E"
+    />
 
-      h1 { font-size: 2.5rem; margin-bottom: 1.5rem; }
-      h2 { font-size: 1.8rem; margin-bottom: 1rem; color: #2c3e50; }
-
-      .poem {
-        margin-top: 2rem;
-        line-height: 2;
-        font-size: 1.2rem;
-        color: #555;
-      }
-      .poem .author {
-        margin-top: 1rem;
-        color: #999;
-        font-size: 0.9rem;
-      }
-
-      .infografiky-grid {
-        margin-top: 2rem;
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-        gap: 1.5rem;
-      }
-      .infografika-card {
-        background: #fff;
-        border: 1px solid #e0e0e0;
-        border-radius: 10px;
-        padding: 1.8rem;
-        text-align: left;
-        cursor: pointer;
-        transition: transform 0.2s, box-shadow 0.2s;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-      }
-      .infografika-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-        border-color: #2c3e50;
-      }
-      .infografika-card .card-icon { font-size: 2rem; margin-bottom: 0.8rem; }
-      .infografika-card h3 { font-size: 1.1rem; margin-bottom: 0.4rem; color: #2c3e50; }
-      .infografika-card p { font-size: 0.88rem; color: #777; line-height: 1.5; }
-
-      .infografika-viewer {
-        position: fixed;
-        inset: 0;
-        background: rgba(0,0,0,0.6);
-        z-index: 1000;
-        display: flex;
-        flex-direction: column;
-      }
-      .viewer-bar {
-        background: #2c3e50;
-        color: #fff;
-        padding: 0.7rem 1.2rem;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        font-family: sans-serif;
-        font-size: 0.95rem;
-      }
-      .viewer-bar button {
-        background: #e74c3c;
-        color: #fff;
-        border: none;
-        border-radius: 4px;
-        padding: 0.4rem 1rem;
-        cursor: pointer;
-        font-size: 0.9rem;
-      }
-      .viewer-bar button:hover { background: #c0392b; }
-      .infografika-viewer iframe {
-        flex: 1;
-        width: 100%;
-        border: none;
-      }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&amp;family=Work+Sans:wght@400;500;600;700&amp;display=swap"
+    />
+    <link rel="stylesheet" href="assets/site.css" />
+    <link rel="stylesheet" href="assets/home.css" />
   </head>
   <body>
-    <div id="root"></div>
-    <script type="text/babel">
-      const { useState } = React;
+    <a class="skip-link" href="#obsah">Přeskočit na obsah</a>
 
-      function Nav({ page, setPage }) {
-        return (
-          <nav>
-            <a className={page === "home" ? "active" : ""} onClick={() => setPage("home")}>Domů</a>
-            <a className={page === "infografiky" ? "active" : ""} onClick={() => setPage("infografiky")}>Infografiky</a>
-          </nav>
-        );
-      }
+    <header class="home-header">
+      <a class="home-brand" href="./">
+        <span class="home-brand__name">Petr Soukup</span>
+        <span class="home-brand__role">E-commerce · AI · tvorba webů</span>
+      </a>
 
-      function Home() {
-        return (
-          <div className="page">
-            <h1>Hello World</h1>
-            <div className="poem">
-              <p>
-                Tvůj smích je světlo, které hřeje,<br />
-                tvé oči hvězdy, jež mi září.<br />
-                Bez tebe den se prázdný jeví,<br />
-                s tebou i bouře v ráj se mění.
+      <nav class="home-nav" aria-label="Hlavní navigace">
+        <a href="#prace">Práce</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
+    </header>
+
+    <main id="obsah">
+      <section class="home-hero">
+        <h1 class="home-hero__title">
+          Vysvětlím ti,<br />co ti AI přinese<br /><em>a jak ti pomůže</em>
+        </h1>
+
+        <p class="home-hero__lead">Bez technického žargónu.</p>
+
+        <div class="home-hero__actions">
+          <a class="btn btn--primary btn--lg" href="#prace">Prohlédnout práce</a>
+          <a class="btn btn--secondary btn--lg" href="#kontakt">Kontakt</a>
+        </div>
+      </section>
+
+      <section class="work" id="prace">
+        <div class="work__inner">
+          <div class="section-head">
+            <div>
+              <span class="eyebrow">Práce</span>
+              <h2 class="section-title">Co tu najdeš</h2>
+            </div>
+            <p class="section-head__note">
+              Každá položka je samostatná stránka — otevře se rovnou v prohlížeči,
+              bez PDF a bez přihlašování.
+            </p>
+          </div>
+
+          <div class="work__grid">
+            <a class="card work-card" href="fenix_vs_ee20.html">
+              <div class="work-card__meta">
+                <span class="work-card__tag">Infografika</span>
+                <span>eBRANA</span>
+              </div>
+              <h3 class="card__title">Fénix vs. eE 2.0</h3>
+              <p class="card__desc">
+                Srovnání dvou e-commerce platforem — výkon, funkce a náklady
+                vedle sebe. Podklady vychází z přiložené tabulky, součástí je
+                i její stažení.
               </p>
-              <p className="author">— s láskou, Petr</p>
-            </div>
+              <p class="work-card__cue">Otevřít srovnání →</p>
+            </a>
+
+            <a class="card work-card" href="nikola/">
+              <div class="work-card__meta">
+                <span class="work-card__tag">Web</span>
+                <span>Návrh &amp; kód</span>
+              </div>
+              <h3 class="card__title">Nikola Bartáková — web v2</h3>
+              <p class="card__desc">
+                Landing page pro trenérku a výživovou poradkyni. Design systém
+                převedený do statického HTML a CSS, responzivní od mobilu po
+                desktop. Návrh, ne živý klientský web.
+              </p>
+              <p class="work-card__cue">Otevřít stránku →</p>
+            </a>
           </div>
-        );
-      }
+        </div>
+      </section>
+    </main>
 
-      const infografiky = [
-        {
-          id: "fenix_vs_ee20",
-          icon: "🚀",
-          title: "Fénix vs. eE 2.0",
-          desc: "Proč přejít na novou e-commerce platformu — srovnání výkonu, funkcí a možností.",
-          url: "fenix_vs_ee20.html",
-        },
-      ];
+    <footer class="home-footer" id="kontakt">
+      <div class="home-footer__inner">
+        <div>
+          <div class="home-footer__brand">Petr Soukup</div>
+          <p class="home-footer__tagline">E-commerce · AI · tvorba webů</p>
+        </div>
 
-      function Infografiky() {
-        return (
-          <div className="page">
-            <h2>Infografiky</h2>
-            <div className="infografiky-grid">
-              {infografiky.map(item => (
-                <a key={item.id} className="infografika-card" href={item.url} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
-                  <div className="card-icon">{item.icon}</div>
-                  <h3>{item.title}</h3>
-                  <p>{item.desc}</p>
-                </a>
-              ))}
-            </div>
-          </div>
-        );
-      }
+        <div>
+          <h2>Kontakt</h2>
+          <ul>
+            <li><a href="mailto:info@petr-soukup.info">info@petr-soukup.info</a></li>
+          </ul>
+        </div>
+      </div>
 
-      function App() {
-        const [page, setPage] = useState("home");
-
-        return (
-          <>
-            <Nav page={page} setPage={setPage} />
-            {page === "home" && <Home />}
-            {page === "infografiky" && <Infografiky />}
-          </>
-        );
-      }
-
-      ReactDOM.createRoot(document.getElementById("root")).render(<App />);
-    </script>
+      <div class="home-footer__bottom">
+        <span>© 2026 Petr Soukup</span>
+        <span>petr-soukup.info</span>
+      </div>
+    </footer>
   </body>
 </html>

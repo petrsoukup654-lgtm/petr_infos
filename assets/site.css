@@ -1,117 +1,77 @@
 /* ==========================================================================
-   petr-soukup.info — sdílený základ
-   Design tokeny a DS komponenty (Button, Card) převzaté z design systému
-   "Nikola Bartáková Design System". Sdílí je homepage i podstránka /nikola/.
-   Stránkově specifická pravidla patří do vlastního stylu dané stránky.
+   Petr Soukup — design systém „Signál" v1.0
+   Tokeny a komponenty převzaté z design systému. Hodnoty se needitují ad hoc;
+   pokud se má něco změnit, mění se nejdřív design systém.
+
+   Pravidla systému:
+   - Bez zaoblení. Linky 2 px. Plné plochy.
+   - Poměr ploch 55 % Paper · 25 % Ink · 12 % Sand · 8 % Signál.
+   - Signál nikdy jako barva běžného textu na Paperu — jen na Inku, jako
+     plocha pod Ink textem, nebo pro kurzívní akcent v titulku.
    ========================================================================== */
 
-/* --- Tokens: barvy ------------------------------------------------------ */
+/* --- Tokeny: barvy ------------------------------------------------------ */
 :root {
-  /* base palette */
-  --ink-950: #191512;
-  --ink-800: #33291f;
-  --ink-600: #5c4c3a;
-  --sand-100: #faf6ef;
-  --sand-200: #f1e9d9;
-  --sand-300: #e4d7bd;
-  --ember-500: #e4572e;
-  --ember-600: #c4441f;
-  --ember-700: #9e3417;
-  --ember-100: #fdeae1;
-  --moss-500: #5f7350;
-  --moss-600: #48583a;
-  --moss-100: #e9efe2;
-  --gold-500: #c99a3c;
-  --gold-100: #f8ecd2;
+  --ink: #0e1518;
+  --signal: #0fb2a0;
+  --slate: #34464c;
+  --sand: #e4dece;
+  --paper: #f4f2ec;
   --white: #ffffff;
-  --success: #4d7c3f;
-  --danger: #b8402a;
-  --warning: #c9862f;
 
-  /* semantic aliases */
-  --bg-page: var(--sand-100);
-  --bg-page-alt: var(--sand-200);
-  --bg-inverse: var(--ink-950);
-  --surface-card: var(--white);
-  --surface-card-alt: var(--sand-200);
-  --surface-sunken: var(--sand-300);
-  --text-primary: var(--ink-950);
-  --text-secondary: var(--ink-600);
-  --text-inverse: var(--sand-100);
-  --text-muted: #8a7a65;
-  --border-default: rgba(25, 21, 18, 0.12);
-  --border-strong: rgba(25, 21, 18, 0.22);
-  --accent-primary: var(--ember-500);
-  --accent-primary-hover: var(--ember-600);
-  --accent-primary-active: var(--ember-700);
-  --accent-secondary: var(--moss-500);
-  --accent-tertiary: var(--gold-500);
-  --focus-ring: var(--ember-500);
+  /* odstupňovaná čitelnost */
+  --text-body: #33393d;
+  --text-soft: #4a4e52;
+  --text-muted: #6e6a62;
+  --text-meta: #5c6165;
+  --on-ink: var(--paper);
+  --on-ink-muted: #9aa3a6;
+  --on-ink-faint: #8e9799;
+  --on-sand-body: #3b4145;
+
+  --border: #d8d4c9;
+  --border-soft: #edeae1;
+  --surface-quote: #efede5;
+  /* kružnicový motiv na tmavých plochách */
+  --ink-ring-outer: #253034;
+  --ink-ring-inner: #1c2529;
 }
 
-/* --- Tokens: typografie ------------------------------------------------- */
+/* --- Tokeny: typografie ------------------------------------------------- */
 :root {
-  --font-display: "Barlow Condensed", system-ui, sans-serif;
-  --font-body: "Work Sans", system-ui, sans-serif;
+  --font-sans: "Bricolage Grotesque", system-ui, sans-serif;
+  --font-serif: "Instrument Serif", Georgia, serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 
-  --text-display-xl: 5rem;
-  --text-display-l: 3.4rem;
-  --text-display-m: 2.4rem;
-  --text-heading-l: 1.75rem;
-  --text-heading-m: 1.375rem;
-  --text-heading-s: 1.125rem;
-  --text-body-l: 1.125rem;
-  --text-body-m: 1rem;
-  --text-body-s: 0.875rem;
-  --text-caption: 0.75rem;
+  /* v systému pevné px, tady fluidně — návrh je desktopový */
+  --size-display: clamp(2.5rem, 6vw, 4rem); /* 64 */
+  --size-h1: clamp(2rem, 4.6vw, 2.75rem); /* 44 */
+  --size-h2: clamp(1.6rem, 3vw, 1.875rem); /* 30 */
+  --size-h3: 1.25rem; /* 20 */
+  --size-body: 1.031rem; /* 16.5 */
+  --size-small: 0.906rem; /* 14.5 */
+  --size-mono: 0.75rem; /* 12 */
 
-  --lh-tight: 1.05;
-  --lh-snug: 1.25;
-  --lh-normal: 1.5;
-  --lh-relaxed: 1.65;
+  /* systém udává 0.98 / 1.02, ale ty jsou počítané na jednořádkový latinkový
+     titulek — u víceřádkové češtiny se háčky srážejí s řádkem nad nimi */
+  --lh-display: 1.08;
+  --lh-h1: 1.1;
+  --lh-h2: 1.15;
+  --lh-h3: 1.3;
+  --lh-body: 1.62;
 
-  --tracking-display: 0.01em;
-  --tracking-caps: 0.08em;
+  --ls-display: -0.05em;
+  --ls-h1: -0.045em;
+  --ls-h2: -0.035em;
+  --ls-h3: -0.02em;
+  --ls-mono: 0.16em;
 }
 
-/* --- Tokens: spacing ---------------------------------------------------- */
+/* --- Tokeny: rozměry ---------------------------------------------------- */
 :root {
-  --space-1: 4px;
-  --space-2: 8px;
-  --space-3: 12px;
-  --space-4: 16px;
-  --space-5: 20px;
-  --space-6: 24px;
-  --space-8: 32px;
-  --space-10: 40px;
-  --space-12: 48px;
-  --space-16: 64px;
-  --space-20: 80px;
-  --space-24: 96px;
-  --space-32: 128px;
-
-  --container-max: 1200px;
-  --radius-s: 6px;
-  --radius-m: 10px;
-  --radius-l: 16px;
-  --radius-pill: 999px;
-}
-
-/* --- Tokens: efekty ----------------------------------------------------- */
-:root {
-  --shadow-s: 0 1px 2px rgba(25, 21, 18, 0.08);
-  --shadow-m: 0 4px 16px rgba(25, 21, 18, 0.1);
-  --shadow-l: 0 12px 32px rgba(25, 21, 18, 0.14);
-  --shadow-inset: inset 0 1px 3px rgba(25, 21, 18, 0.12);
-
-  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
-  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  --duration-fast: 120ms;
-  --duration-normal: 200ms;
-  --duration-slow: 320ms;
-
-  /* vodorovné odsazení sekcí — v návrhu 56px, fluidně na malých displejích */
-  --page-x: clamp(20px, 4vw, 56px);
+  --container: 1240px;
+  --page-x: clamp(20px, 5vw, 72px);
+  --section-y: clamp(48px, 8vw, 72px);
 }
 
 /* --- Base --------------------------------------------------------------- */
@@ -123,15 +83,16 @@
 
 html {
   scroll-behavior: smooth;
-  /* aby kotvy neskončily pod sticky hlavičkou */
-  scroll-padding-top: 88px;
+  scroll-padding-top: 96px;
 }
 
 body {
   margin: 0;
-  font-family: var(--font-body);
-  color: var(--text-primary);
-  background: var(--bg-page);
+  font-family: var(--font-sans);
+  font-size: var(--size-body);
+  line-height: var(--lh-body);
+  color: var(--ink);
+  background: var(--paper);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
@@ -142,18 +103,27 @@ img {
 }
 
 a {
-  color: var(--accent-primary-hover);
+  color: var(--ink);
   text-decoration: none;
 }
 
-a:hover {
-  color: var(--accent-primary-active);
+p {
+  margin: 0;
+  color: var(--text-body);
+  text-wrap: pretty;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-weight: 800;
+  text-wrap: pretty;
 }
 
 :focus-visible {
-  outline: 2px solid var(--focus-ring);
+  outline: 2px solid var(--signal);
   outline-offset: 3px;
-  border-radius: var(--radius-s);
 }
 
 .skip-link {
@@ -161,17 +131,17 @@ a:hover {
   left: -9999px;
   top: 0;
   z-index: 100;
-  background: var(--ember-500);
-  color: #fff;
+  background: var(--ink);
+  color: var(--paper);
   padding: 10px 18px;
-  font-size: var(--text-body-s);
-  font-weight: 600;
+  font-family: var(--font-mono);
+  font-size: 13px;
 }
 
 .skip-link:focus {
   left: var(--page-x);
   top: 10px;
-  color: #fff;
+  color: var(--paper);
 }
 
 .visually-hidden {
@@ -186,191 +156,355 @@ a:hover {
   border: 0;
 }
 
-/* --- Rám webu (proužek zpět na rozcestník) ------------------------------ */
-.site-frame {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 8px 20px;
-  padding: 8px var(--page-x);
-  background: var(--ink-950);
-  color: var(--text-inverse);
-  font-size: 11px;
+/* --- Typografické role -------------------------------------------------- */
+.display {
+  font-size: var(--size-display);
+  line-height: var(--lh-display);
+  letter-spacing: var(--ls-display);
+}
+
+.h1 {
+  font-size: var(--size-h1);
+  line-height: var(--lh-h1);
+  letter-spacing: var(--ls-h1);
+}
+
+.h2 {
+  font-size: var(--size-h2);
+  line-height: var(--lh-h2);
+  letter-spacing: var(--ls-h2);
+}
+
+.h3 {
+  font-size: var(--size-h3);
   font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  line-height: var(--lh-h3);
+  letter-spacing: var(--ls-h3);
 }
 
-.site-frame__back {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--text-inverse);
-  transition: color var(--duration-fast) var(--ease-standard);
+/* jediný povolený způsob, jak dostat Signál do titulku na Paperu */
+.accent {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--signal);
 }
 
-.site-frame__back:hover {
-  color: var(--ember-500);
-}
-
-.site-frame__note {
-  color: var(--text-muted);
-  letter-spacing: 0.12em;
-}
-
-/* --- Opakující se typografické prvky ------------------------------------ */
+/* mono popisek — v systému nese čísla, štítky, navigaci a kontakty */
 .eyebrow {
+  font-family: var(--font-mono);
   font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.24em;
+  letter-spacing: var(--ls-mono);
   text-transform: uppercase;
-  color: var(--ember-600);
+  color: var(--text-muted);
 }
 
-.section-title {
-  font-family: var(--font-display);
-  font-weight: 800;
-  line-height: 1;
-  text-transform: uppercase;
-  margin: 12px 0 0;
-  font-size: clamp(2.1rem, 4.4vw, 3.2rem);
+.lede {
+  font-size: var(--size-body);
+  line-height: var(--lh-body);
+  color: var(--text-body);
+  max-width: 640px;
 }
 
+/* --- Hlavička sekce ----------------------------------------------------- */
 .section-head {
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 32px;
-  margin-bottom: 44px;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 14px;
+}
+
+.section-head__num {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--signal);
 }
 
 .section-head__note {
-  font-size: 16px;
-  line-height: 1.6;
-  color: var(--text-secondary);
-  max-width: 38ch;
-  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--size-mono);
+  color: var(--text-muted);
+  margin-left: auto;
 }
 
-/* --- Tlačítka (DS komponenta Button) ------------------------------------ */
+/* na úzkém displeji poznámka pod nadpis, ať netlačí do zalomení */
+@media (max-width: 720px) {
+  .section-head__note {
+    margin-left: 0;
+    flex-basis: 100%;
+  }
+}
+
+/* --- Tlačítka ----------------------------------------------------------- */
 .btn {
-  font-family: var(--font-body);
-  font-weight: 600;
-  border-radius: var(--radius-pill);
-  border: 1.5px solid transparent;
-  cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  text-align: center;
-  transition: background var(--duration-fast) var(--ease-standard),
-    color var(--duration-fast) var(--ease-standard),
-    transform var(--duration-fast) var(--ease-standard);
-}
-
-.btn--sm {
-  padding: 8px 16px;
-  font-size: 14px;
-}
-
-.btn--md {
-  padding: 12px 24px;
+  font-family: var(--font-sans);
   font-size: 15px;
-}
-
-.btn--lg {
-  padding: 15px 30px;
-  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  border: none;
+  transition: background 160ms ease, color 160ms ease;
 }
 
 .btn--primary {
-  background: var(--accent-primary);
-  color: #fff;
+  color: var(--paper);
+  background: var(--ink);
+  padding: 14px 22px;
 }
 
 .btn--primary:hover {
-  background: var(--accent-primary-hover);
-  color: #fff;
+  background: var(--signal);
+  color: var(--ink);
 }
 
 .btn--secondary {
+  color: var(--ink);
   background: transparent;
-  color: var(--text-primary);
-  border-color: var(--border-strong);
+  border: 2px solid var(--ink);
+  padding: 12px 20px;
 }
 
 .btn--secondary:hover {
-  background: var(--sand-200);
-  color: var(--text-primary);
+  background: var(--ink);
+  color: var(--paper);
 }
 
-.btn--ghost {
+/* na Inku se obrací výchozí stav, hover zůstává Signál */
+.on-ink .btn--primary {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.on-ink .btn--primary:hover {
+  background: var(--signal);
+  color: var(--ink);
+}
+
+.on-ink .btn--secondary {
+  color: var(--paper);
+  border-color: var(--paper);
+}
+
+.on-ink .btn--secondary:hover {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+/* --- Mono odkaz --------------------------------------------------------- */
+.link-mono {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+  border-bottom: 2px solid var(--signal);
+  padding-bottom: 3px;
+  transition: color 160ms ease;
+}
+
+.link-mono:hover {
+  color: var(--slate);
+}
+
+.on-ink .link-mono,
+.card--ink .link-mono {
+  color: var(--paper);
+}
+
+.on-ink .link-mono:hover,
+.card--ink .link-mono:hover {
+  color: var(--signal);
+}
+
+/* --- Štítky ------------------------------------------------------------- */
+.tag {
+  display: inline-block;
+  padding: 8px 15px;
+  font-size: 13px;
+  font-weight: 600;
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.tag--signal {
+  background: var(--signal);
+  color: var(--ink);
+}
+
+.tag--outline {
   background: transparent;
-  color: var(--accent-primary-hover);
+  border: 1.5px solid var(--ink);
+  color: var(--ink);
 }
 
-.btn--ghost:hover {
-  background: var(--ember-100);
+.tag--sand {
+  background: var(--sand);
+  color: var(--ink);
 }
 
-.btn--inverse {
-  background: #fff;
-  color: var(--ink-950);
-}
-
-.btn--inverse:hover {
-  background: var(--sand-200);
-  color: var(--ink-950);
-}
-
-/* --- Karta (DS komponenta Card) ----------------------------------------- */
+/* --- Karta -------------------------------------------------------------- */
 .card {
-  background: var(--surface-card);
-  border-radius: var(--radius-l);
-  overflow: hidden;
-  border: 1px solid var(--border-default);
-  box-shadow: var(--shadow-s);
   display: flex;
   flex-direction: column;
-  min-height: 200px;
-  padding: var(--space-5);
-  gap: 8px;
-  transition: box-shadow var(--duration-normal) var(--ease-out),
-    transform var(--duration-normal) var(--ease-out);
+  gap: 12px;
+  border: 1px solid var(--border);
+  background: var(--white);
+  padding: 28px;
 }
 
-.card:hover {
-  box-shadow: var(--shadow-l);
-  transform: translateY(-2px);
+.card__num {
+  font-family: var(--font-mono);
+  font-size: var(--size-mono);
+  color: var(--signal);
 }
 
 .card__title {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: var(--text-heading-m);
-  color: var(--text-primary);
+  font-size: var(--size-h3);
+  font-weight: 600;
+  letter-spacing: var(--ls-h3);
   margin: 0;
 }
 
 .card__desc {
-  font-family: var(--font-body);
-  font-size: var(--text-body-s);
-  color: var(--text-secondary);
-  line-height: var(--lh-normal);
-  flex: 1;
+  font-size: var(--size-small);
+  line-height: 1.6;
+  color: var(--text-soft);
   margin: 0;
 }
 
-/* --- Responzivita sdílených prvků --------------------------------------- */
-@media (max-width: 900px) {
-  .section-head {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
-    margin-bottom: 32px;
-  }
+.card--ink {
+  background: var(--ink);
+  border-color: var(--ink);
+}
+
+.card--ink .card__title {
+  color: var(--paper);
+}
+
+.card--ink .card__desc {
+  color: var(--on-ink-muted);
+}
+
+.card--sand {
+  background: var(--sand);
+  border-color: var(--sand);
+}
+
+.card--sand .card__num {
+  color: var(--ink);
+}
+
+.card--sand .card__desc {
+  color: var(--on-sand-body);
+}
+
+/* --- Citace ------------------------------------------------------------- */
+.quote {
+  border-left: 3px solid var(--signal);
+  background: var(--surface-quote);
+  padding: 30px 34px;
+}
+
+.quote__text {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.688rem;
+  line-height: 1.3;
+  color: var(--ink);
+  max-width: 820px;
+  margin: 0;
+}
+
+.quote__source {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 14px;
+}
+
+/* --- Značka ------------------------------------------------------------- */
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  color: var(--ink);
+}
+
+.logo__mark {
+  flex: none;
+  width: 44px;
+  height: 44px;
+}
+
+.logo__name {
+  display: block;
+  font-size: 1.375rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.logo__role {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.08em;
+  color: var(--text-meta);
+  margin-top: 4px;
+}
+
+.on-ink .logo,
+.on-ink .logo__name {
+  color: var(--paper);
+}
+
+.on-ink .logo__role {
+  color: var(--on-ink-faint);
+}
+
+/* --- Tmavá plocha s kružnicovým motivem --------------------------------- */
+.on-ink {
+  position: relative;
+  overflow: hidden;
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.on-ink > * {
+  position: relative;
+}
+
+.on-ink::before,
+.on-ink::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.on-ink::before {
+  right: -60px;
+  top: -80px;
+  width: 420px;
+  height: 420px;
+  border: 1px solid var(--ink-ring-outer);
+}
+
+.on-ink::after {
+  right: 40px;
+  top: 40px;
+  width: 300px;
+  height: 300px;
+  border: 1px solid var(--ink-ring-inner);
 }
 
 /* --- Omezený pohyb ------------------------------------------------------ */
@@ -385,9 +519,5 @@ a:hover {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-  }
-
-  .card:hover {
-    transform: none;
   }
 }

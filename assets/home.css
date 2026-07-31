@@ -81,7 +81,8 @@
   text-transform: uppercase;
   line-height: var(--lh-tight);
   letter-spacing: var(--tracking-display);
-  font-size: clamp(2.8rem, 7vw, 5rem);
+  /* spodní mez drží první řádek („Vysvětlím ti,") vcelku i na 375px */
+  font-size: clamp(2.25rem, 6.5vw, 5rem);
   margin: 14px 0 0;
 }
 

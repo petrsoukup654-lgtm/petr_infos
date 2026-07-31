@@ -1,0 +1,255 @@
+/* ==========================================================================
+   petr-soukup.info — homepage (rozcestník prací)
+   Staví na tokenech a komponentách ze site.css, který se linkuje před tímto
+   souborem.
+   ========================================================================== */
+
+/* --- Hlavička ----------------------------------------------------------- */
+.home-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: rgba(250, 246, 239, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border-default);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 16px var(--page-x);
+}
+
+.home-brand {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  color: var(--text-primary);
+}
+
+.home-brand:hover {
+  color: var(--text-primary);
+}
+
+.home-brand__name {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 23px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.home-brand__role {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.home-nav {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+
+.home-nav a {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-primary);
+  padding: 4px 0;
+  border-bottom: 2px solid transparent;
+  transition: border-color var(--duration-fast) var(--ease-standard);
+}
+
+.home-nav a:hover {
+  color: var(--text-primary);
+  border-bottom-color: var(--ember-500);
+}
+
+/* --- Hero --------------------------------------------------------------- */
+.home-hero {
+  padding: clamp(64px, 12vh, 128px) var(--page-x) clamp(48px, 8vh, 88px);
+  max-width: var(--container-max);
+}
+
+.home-hero__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tracking-display);
+  font-size: clamp(2.8rem, 7vw, 5rem);
+  margin: 14px 0 0;
+}
+
+.home-hero__title em {
+  font-style: normal;
+  color: var(--accent-primary);
+}
+
+.home-hero__lead {
+  font-size: var(--text-body-l);
+  line-height: var(--lh-relaxed);
+  color: var(--text-secondary);
+  max-width: 56ch;
+  margin: 24px 0 0;
+}
+
+.home-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 36px;
+}
+
+/* --- Práce -------------------------------------------------------------- */
+.work {
+  padding: clamp(56px, 9vh, 88px) var(--page-x) clamp(64px, 10vh, 96px);
+  background: var(--bg-page-alt);
+  border-top: 1px solid var(--border-default);
+}
+
+.work__inner {
+  max-width: var(--container-max);
+}
+
+.work__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 22px;
+}
+
+/* karta jako celý odkaz — .card přichází ze site.css */
+.work-card {
+  color: inherit;
+  min-height: 240px;
+}
+
+.work-card:hover {
+  color: inherit;
+}
+
+.work-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.work-card__tag {
+  background: var(--ember-100);
+  color: var(--ember-700);
+  border-radius: var(--radius-pill);
+  padding: 4px 12px;
+  letter-spacing: 0.12em;
+}
+
+.work-card__cue {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-primary-hover);
+}
+
+.work-card:hover .work-card__cue {
+  color: var(--accent-primary-active);
+}
+
+/* --- Patička ------------------------------------------------------------ */
+.home-footer {
+  background: var(--bg-inverse);
+  color: var(--text-inverse);
+  padding: clamp(48px, 8vh, 72px) var(--page-x) 28px;
+}
+
+.home-footer__inner {
+  max-width: var(--container-max);
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 40px;
+}
+
+.home-footer__brand {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 26px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.home-footer__tagline {
+  margin: 10px 0 0;
+  color: var(--text-muted);
+  font-size: var(--text-body-s);
+  line-height: var(--lh-relaxed);
+  max-width: 42ch;
+}
+
+.home-footer h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--text-muted);
+  margin: 0 0 14px;
+}
+
+.home-footer ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+  font-size: var(--text-body-s);
+}
+
+.home-footer a {
+  color: var(--text-inverse);
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+
+.home-footer a:hover {
+  color: var(--ember-500);
+}
+
+.home-footer__bottom {
+  max-width: var(--container-max);
+  margin-top: 44px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(250, 246, 239, 0.16);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  justify-content: space-between;
+  font-size: var(--text-caption);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* --- Responzivita ------------------------------------------------------- */
+@media (max-width: 720px) {
+  .home-header {
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  .home-nav {
+    gap: 22px;
+  }
+
+  .home-footer__inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}

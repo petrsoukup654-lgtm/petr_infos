@@ -70,6 +70,9 @@
     transition: color .2s;
   }
   nav ul a:hover { color: var(--blue); }
+  /* zpět na rozcestník petr-soukup.info */
+  .nav-back { padding-left: 2rem; border-left: 1px solid var(--white30); }
+  .nav-back a { color: rgba(255,255,255,.45); }
 
   section { padding: 7rem 5vw; }
 
@@ -312,7 +315,9 @@
   .reveal.visible { opacity: 1; transform: none; }
 
   @media (max-width: 640px) {
-    nav ul { display: none; }
+    /* kotvy sekcí se na mobilu skrývají, zpětný odkaz musí zůstat dostupný */
+    nav ul li:not(.nav-back) { display: none; }
+    .nav-back { padding-left: 0; border-left: none; }
     .check-grid { grid-template-columns: 1fr; }
     .hero-stats { gap: 2rem; }
   }
@@ -328,6 +333,7 @@
     <li><a href="#vyhody">Výhody</a></li>
     <li><a href="#srovnani">Srovnání</a></li>
     <li><a href="#shrnuti">Shrnutí</a></li>
+    <li class="nav-back"><a href="index.html"><span aria-hidden="true">←</span> Petr Soukup</a></li>
   </ul>
 </nav>
 

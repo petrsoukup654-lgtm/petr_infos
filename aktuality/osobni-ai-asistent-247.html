@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Osobní AI asistent běžící 24/7: Domácí mini server vs. cloudové VPS | Petr Soukup</title>
+  <meta name="description" content="Detailní srovnání a architektura pro provoz 24/7 osobního AI asistenta. Porovnání domácího mini serveru (Intel N100, Mac Mini), cloudového VPS (Hetzner) a hybridního modelu přes Tailscale.">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="shortcut icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+</head>
+<body>
+  <!-- Reading Progress Bar -->
+  <div class="progress-container">
+    <div class="progress-bar"></div>
+  </div>
+
+  <!-- Background Glow Effects -->
+  <div class="glow-orb glow-orb-1"></div>
+  <div class="glow-orb glow-orb-2"></div>
+
+  <!-- Header & Nav -->
+  <header class="header">
+    <div class="nav-container">
+      <a href="../index.html" class="brand-logo">
+        <span>PS</span> Petr Soukup
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html">Domů</a></li>
+          <li><a href="../index.html#aktuality" class="active">Aktuality</a></li>
+          <li><a href="../index.html#o-mne">O mně</a></li>
+          <li><a href="../index.html#kontakt">Kontakt</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Article Layout -->
+  <main class="article-wrapper">
+    <!-- Breadcrumbs -->
+    <nav class="breadcrumbs">
+      <a href="../index.html">Domů</a> &rsaquo;
+      <a href="../index.html#aktuality">Aktuality</a> &rsaquo;
+      <span>Osobní AI asistent běžící 24/7</span>
+    </nav>
+
+    <!-- Article Header -->
+    <header class="article-header">
+      <div class="badge">💡 Architektura & Infrastruktura</div>
+      <h1>Osobní AI asistent běžící 24/7: Domácí mini server vs. cloudové VPS</h1>
+      
+      <div class="article-meta-bar">
+        <div class="author-info">
+          <div class="author-avatar">PS</div>
+          <div>
+            <strong style="color: #fff; display: block;">Petr Soukup</strong>
+            <span style="font-size: 0.85rem; color: var(--text-muted);">Autor & AI Developer</span>
+          </div>
+        </div>
+        <div>📅 5. srpna 2026</div>
+        <div>⏱️ 6 min čtení</div>
+      </div>
+    </header>
+
+    <!-- Article Content -->
+    <article class="article-content">
+      <p class="lead" style="font-size: 1.2rem; color: #f3f4f6; font-weight: 400; line-height: 1.8;">
+        Představte si asistenta, který pro vás pracuje nepřetržitě 24 hodin denně, 7 dní v týdnu. Zatímco spíte, zpracovává rešerše, hlídá důležité aktualizace, řídí plánované úlohy, spravuje notifikace a reaguje na vaše požadavky. Aby však takový autonomní AI asistent mohl spolehlivě fungovat bez neustálých výpadků, potřebuje správně dimenzovanou infrastrukturu.
+      </p>
+
+      <img src="images/ai_assistant_hero.jpg" alt="Osobní AI asistent běžící 24/7 v akce" id="hero-img">
+
+      <p>
+        Při návrhu architektonického řešení narazíte na dvě základní filosofie: <strong>provozovat vlastního asistenta doma na mini serveru</strong>, nebo <strong>využít cloudové VPS (Virtual Private Server)</strong>.
+      </p>
+
+      <p>
+        V tomto článku si detailně rozbereme klíčové oblasti – od důvodů pro 24/7 provoz až po pokročilou <strong>hybridní architekturu</strong>, která propojuje to nejlepší z obou světů.
+      </p>
+
+      <hr style="border: 0; border-top: 1px solid var(--border-glass); margin: 2.5rem 0;">
+
+      <h2>1. Úvod: Od jednorázového chatu k neustále běžícímu agentovi</h2>
+
+      <p>
+        Většina uživatelů dnes používá generativní umělou inteligenci reaktivně – otevřou webové rozhraní (např. ChatGPT nebo Google Gemini), napíší dotaz, přečtou si odpověď a okno zavřou. 
+      </p>
+
+      <p>
+        Skutečný posun v produktivitě ale nastává ve chvíli, kdy přeorientujete svůj model fungování z <strong>pasivního chatu na autonomního agenta</strong>:
+      </p>
+
+      <ul>
+        <li><strong>Proaktivní monitoring a notifikace:</strong> Asistent nemusí čekat na váš impuls. Samostatně kontroluje API rozhraní, e-mailové schránky, kalendáře nebo stav vašich systémů a odesílá vám souhrnné zprávy přes Telegram či Signal v momentě, kdy se stane něco důležitého.</li>
+        <li><strong>Asynchronní plnění dlouhotrvajících úloh:</strong> Místo toho, abyste sledovali načítací indikátor při generování rozsáhlých rešerší nebo analýze dat, zadáte úkol a asistent vás informuje o dokončení.</li>
+        <li><strong>Nepřetržitý běh plánovaných skriptů (Cron / Timery):</strong> Noční zálohy, agregace zpráv z RSS kanálů, pravidelné generování reportů nebo údržba databáze probíhají bez nutnosti mít zapnutý váš pracovní notebook.</li>
+      </ul>
+
+      <p>
+        Aby tato mechanika fungovala 24 hodin denně 7 dní v týdnu, musíte vyřešit kardinální otázku: <strong>Kde bude srdce vašeho AI asistenta fyzicky běžet?</strong>
+      </p>
+
+      <h2>2. Domácí mini server: Absolutní soukromí, vysoký lokální výkon a plná kontrola</h2>
+
+      <p>
+        Provoz na vlastním hardwaru (tzv. <em>Homelab</em>) představuje volbu pro ty, kteří vyžadují nekompromisní ochranu soukromí a chtějí vytěžit maximum z otevřených lokálních modelů.
+      </p>
+
+      <h3>Hardwarové možnosti pro rok 2026:</h3>
+      <ol>
+        <li><strong>Ekonomický základ (Intel N100 / N97 / N305 Mini PC):</strong> Spotřeba pouhých 6 až 15 W v zátěži (provoz stojí cca 30–80 Kč měsíčně). Perfektní pro běh Docker kontejnerů, řídicí logiky v Pythonu/Node.js, databází a lehčích úloh.</li>
+        <li><strong>Výkonný standard pro lokální AI (Apple Mac Mini M-Series / M4):</strong> Unifikovaná paměť RAM (24 GB nebo 48 GB) s propustností přes 150 GB/s dokáže plynule spouštět lokální 8B až 32B modely (Llama 3, Qwen, Mistral) přes rozhraní <strong>Ollama</strong> nebo <strong>LM Studio</strong> rychlostí 30–60 tokenů za sekundu.</li>
+        <li><strong>NVIDIA Dedicated GPU Rig:</strong> Počítač vybavený kartami jako RTX 3090 / 4090 (24 GB VRAM). Nabízí maximální rychlost inference, avšak za cenu vyšší spotřeby v idle stavu (30–60 W) a hlučnosti.</li>
+      </ol>
+
+      <h3>Hlavní výhody domácího serveru:</h3>
+      <ul>
+        <li><strong>100% soukromí a datová suverenita:</strong> Vaše osobní soubory, privátní API klíče a konverzace nikdy neopustí vaši místní síť.</li>
+        <li><strong>Nulové poplatky za tokeny:</strong> Při spouštění lokálních LLM neplatíte žádnému poskytovateli za tisíce přenesených tokenů.</li>
+        <li><strong>Široká multifunkčnost:</strong> Mini server zvládá zároveň spouštět Home Assistant pro chytrou domácnost, lokální NAS či Pi-hole.</li>
+      </ul>
+
+      <h3>Rizika a úskalí:</h3>
+      <ul>
+        <li><strong>Výpadky infrastruktury:</strong> Výpadek proudu nebo internetu doma znamená, že váš asistent přestane reagovat.</li>
+        <li><strong>Složitější vzdálený přístup:</strong> K přístupu na domácí server na cestách potřebujete bezpečně nastavené tunelování.</li>
+      </ul>
+
+      <h2>3. Cloudové VPS: Giga-stabilita 99,9 %, veřejná IP a zero-maintenance</h2>
+
+      <p>
+        Pokud se nechcete starat o hardware, prach, chlazení a výpadky domácího připojení, cloudové virtuální servery (VPS) nabízejí profesionální prostředí dostupné za pár minut.
+      </p>
+
+      <p>
+        <strong>Typičtí poskytovatelé:</strong> Hetzner Cloud, DigitalOcean, Linode nebo český VPS Free za cca 4 € až 10 € měsíčně (cca 100–250 Kč/měsíc).
+      </p>
+
+      <p>
+        Na levném VPS obvykle neběží samotný obří LLM model, ale slouží jako <strong>mozek řídicí logiky</strong>, který směruje dotazy přes API na cloudové modely (Google Gemini API, Claude API, OpenAI API).
+      </p>
+
+      <img src="images/home_server_vps.jpg" alt="Porovnání Domácí server vs Cloudové VPS">
+
+      <h2>4. Přehledné srovnání (Tabulka parametrů)</h2>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Kritérium / Parametr</th>
+              <th>Domácí Mini Server (Intel N100 / Mac Mini)</th>
+              <th>Cloudové VPS (např. Hetzner)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Spolehlivost (Uptime)</strong></td>
+              <td>95–98 % (závisí na domácí síti)</td>
+              <td><span style="color: var(--accent-cyan); font-weight: 600;">99,9 %+ (Datacentrum)</span></td>
+            </tr>
+            <tr>
+              <td><strong>Ochrana soukromí</strong></td>
+              <td><span style="color: #4ade80; font-weight: 600;">100 % lokální (data doma)</span></td>
+              <td>Data uložena u cloudového poskytovatele</td>
+            </tr>
+            <tr>
+              <td><strong>Běh lokálních LLM (Ollama)</strong></td>
+              <td><span style="color: #4ade80; font-weight: 600;">Vynikající (s Mac Mini / GPU)</span></td>
+              <td>Velmi pomalý (chybí GPU)</td>
+            </tr>
+            <tr>
+              <td><strong>Využití Cloudových API</strong></td>
+              <td>Možné přes domácí přípojku</td>
+              <td><span style="color: var(--accent-cyan); font-weight: 600;">Bleskové (páteřní síť)</span></td>
+            </tr>
+            <tr>
+              <td><strong>Počáteční investice</strong></td>
+              <td>5 000 – 30 000 Kč</td>
+              <td><span style="color: #4ade80; font-weight: 600;">0 Kč</span></td>
+            </tr>
+            <tr>
+              <td><strong>Měsíční provozní náklady</strong></td>
+              <td>Jen elektřina (~40–150 Kč)</td>
+              <td>Paušál (~100–300 Kč + API)</td>
+            </tr>
+            <tr>
+              <td><strong>Veřejná IP a Webhooky</strong></td>
+              <td>Nutno řešit VPN / Tailscale</td>
+              <td><span style="color: var(--accent-cyan); font-weight: 600;">Nativní veřejná IP</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>5. Šalamounské řešení: Hybridní model (VPS + Domácí server přes Tailscale)</h2>
+
+      <p>
+        Dostáváme se k nejsilnějšímu architektonickému vzoru, který kombinuje výhody obou světů:
+      </p>
+
+      <img src="images/hybrid_ai_network.jpg" alt="Hybridní síťová architektura přes Tailscale">
+
+      <pre><code>[ Uživatel / Telegram / Webhook ]
+               │
+               ▼
+┌──────────────────────────────┐
+│  Cloudové VPS (Hetzner)      │  <-- Běží 24/7, má veřejnou IP,
+│  (Veřejná brána a router)    │      přijímá zprávy a webhooky
+└──────────────┬───────────────┘
+               │ (Šifrovaný tunel přes Tailscale Mesh VPN)
+               ▼
+┌──────────────────────────────┐
+│  Domácí Mini Server / Mac    │  <-- Běží lokální LLM (Ollama),
+│  (Těžký dělník & Soukromí)   │      má přístup k lokálním datům
+└──────────────┬───────────────┘</code></pre>
+
+      <ol>
+        <li><strong>VPS v cloudu jako „Brána 24/7“:</strong> Přijímá všechny zprávy z Telegramu, e-mailů či webhooků. Zajišťuje 100% dostupnost.</li>
+        <li><strong>Domácí server jako „Dělník“:</strong> Řeší těžké lokální LLM modely (Ollama) a má přístup k soukromým datům.</li>
+        <li><strong>Propojení přes Tailscale:</strong> Šifrovaná Mesh VPN propojuje obě zařízení bez otevírání portů na routeru.</li>
+        <li><strong>Automatický Fallback:</strong> Při výpadku domácí sítě VPS přesměruje dotazy na cloudové API (Google Gemini API).</li>
+      </ol>
+
+      <h2>6. Rozhodovací matice: Co je nejlepší volbou právě pro vás?</h2>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Vaše situace / Priorita</th>
+              <th>Doporučená architektura</th>
+              <th>Hlavní důvod</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>„Chci to mít co nejrychleji bez HW starostí“</strong></td>
+              <td><strong style="color: var(--accent-cyan);">Cloudové VPS</strong></td>
+              <td>Spuštěno za 10 minut s 99,9% uptime a veřejnou IP.</td>
+            </tr>
+            <tr>
+              <td><strong>„Moje data nesmí opustit dům“</strong></td>
+              <td><strong style="color: #4ade80;">Domácí Mini Server</strong></td>
+              <td>Plná kontrola nad daty i lokálními AI modely (Ollama).</td>
+            </tr>
+            <tr>
+              <td><strong>„Chci spouštět lokální 8B–32B LLM na max“</strong></td>
+              <td><strong style="color: var(--accent-purple);">Mac Mini M-series</strong></td>
+              <td>Unifikovaná RAM nabízející nejlepší poměr cena/výkon.</td>
+            </tr>
+            <tr>
+              <td><strong>„Chci 100% dostupnost botů + sílu domácího HW“</strong></td>
+              <td><strong style="color: #f472b6;">Hybridní model (VPS + Tailscale)</strong></td>
+              <td>VPS zajistí 24/7 příjem a fallback, domácí PC výpočty.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Shrnutí a závěr článku</h2>
+
+      <p>
+        Přechod od občasného chatování k <strong>osobnímu AI asistentovi běžícímu 24/7</strong> je obrovským skokem v produktivitě. Pokud s vývojem začínáte, doporučujeme zvolit cloudové VPS s využitím Gemini API. Jakmile vzrostou vaše nároky na soukromí a objem dat, rozšíření o domácí server a propojení přes Tailscale vám poskytne ideální zázemí bez kompromisů.
+      </p>
+
+      <!-- Discussion Callout Box -->
+      <blockquote style="border-left-color: var(--accent-cyan); background: var(--bg-card); margin-top: 3rem;">
+        <h4 style="margin-top: 0; color: #fff;">💬 Zapojte se do diskuse!</h4>
+        <p style="margin-bottom: 0;">
+          Jaké řešení používáte vy? Běží váš AI asistent v cloudu, nebo nedáte dopustit na vlastní domácí homelab? Podělte se o své zkušenosti v komunitní diskusi!
+        </p>
+      </blockquote>
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container" style="padding-bottom: 0;">
+      <p>© 2026 Petr Soukup. Všechna práva vyrazena. Vytvořeno s pomocí AI & Antigravity IDE.</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

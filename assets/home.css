@@ -138,6 +138,53 @@
   margin-top: 4px;
 }
 
+/* --- Sekce Novinky ------------------------------------------------------ */
+.news {
+  padding: var(--section-y) var(--page-x);
+  background: var(--paper);
+  border-top: 1px solid var(--border);
+}
+
+.news__inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+.news__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.news-card {
+  gap: 14px;
+  transition: border-color 160ms ease;
+}
+
+.news-card:hover {
+  border-color: var(--signal);
+}
+
+.news-card__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.news-card .card__desc {
+  flex: 1;
+}
+
+.news-card__cue {
+  align-self: flex-start;
+  margin-top: 4px;
+}
+
 /* --- Patička ------------------------------------------------------------ */
 .site-footer {
   padding: clamp(44px, 7vw, 64px) var(--page-x) 24px;

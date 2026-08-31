@@ -1449,7 +1449,41 @@
           return;
         }
 
-        // 3. Human verification answer check
+        // 3. Phone number validation (must contain at least 9 digits)
+        const phoneInput = document.getElementById('form-phone');
+        const phoneVal = phoneInput ? phoneInput.value.trim() : '';
+        const phoneDigits = phoneVal.replace(/\D/g, '');
+        if (phoneDigits.length < 9) {
+          showStatus('Zadejte prosím platné telefonní číslo (musí obsahovat alespoň 9 číslic).', 'error');
+          if (phoneInput) phoneInput.focus();
+          return;
+        }
+
+        // 4. Email validation (min 3 characters before @ and min 3 characters domain name)
+        const emailInput = document.getElementById('form-email');
+        const emailVal = emailInput ? emailInput.value.trim() : '';
+        const emailParts = emailVal.split('@');
+        let validEmail = false;
+
+        if (emailParts.length === 2) {
+          const localPart = emailParts[0];
+          const domainPart = emailParts[1];
+          const domainSubparts = domainPart.split('.');
+          
+          if (localPart.length >= 3 && /^[a-zA-Z0-9._%+-]+$/.test(localPart)) {
+            if (domainSubparts.length >= 2 && domainSubparts[0].length >= 3 && domainSubparts[domainSubparts.length - 1].length >= 2) {
+              validEmail = true;
+            }
+          }
+        }
+
+        if (!validEmail) {
+          showStatus('Zadejte prosím platný e-mail (alespoň 3 znaky před zavináčem a 3 znaky v názvu domény, např. jmeno@domena.cz).', 'error');
+          if (emailInput) emailInput.focus();
+          return;
+        }
+
+        // 5. Human verification anti-spam answer check
         if (parseInt(quizInput.value, 10) !== correctSum) {
           showStatus('Chybně vyplněná kontrolní otázka proti spamu. Zkontrolujte prosím výsledek (' + num1 + ' + ' + num2 + ').', 'error');
           quizInput.focus();

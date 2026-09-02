@@ -333,16 +333,17 @@
       font-weight: 600;
       font-size: 15px;
       padding: 13px 22px;
-      border: 2px solid var(--ink);
-      background: transparent;
-      color: var(--ink);
+      border: 2px solid var(--acc);
+      background: var(--acc);
+      color: #fff;
       cursor: pointer;
       transition: .15s
     }
 
     .btn:hover {
-      background: var(--ink);
-      color: var(--paper)
+      background: var(--accdk);
+      border-color: var(--accdk);
+      color: #fff
     }
 
     .btn.pri {
@@ -358,6 +359,7 @@
     }
 
     .btn.gh {
+      background: transparent;
       border-color: rgba(255, 255, 255, .45);
       color: #fff
     }
@@ -697,14 +699,21 @@
     }
 
     .spam-check-box input {
-      width: 90px;
-      padding: 8px 10px;
+      width: 140px;
+      min-width: 130px;
+      padding: 9px 14px;
       background: #fff;
       border: 1.5px solid var(--line);
       font-family: Barlow, sans-serif;
       font-weight: 700;
-      font-size: 15px;
+      font-size: 16px;
       text-align: center;
+    }
+
+    .spam-check-box input:focus {
+      outline: none;
+      border-color: var(--acc);
+      box-shadow: 0 0 0 3px rgba(228, 85, 31, .15);
     }
 
     .form-submit-btn {
@@ -715,9 +724,9 @@
       text-transform: uppercase;
       font-size: 18px;
       letter-spacing: .05em;
-      background: var(--ink);
+      background: var(--acc);
       color: #fff;
-      border: 2px solid var(--ink);
+      border: 2px solid var(--acc);
       cursor: pointer;
       display: inline-flex;
       align-items: center;
@@ -727,8 +736,8 @@
     }
 
     .form-submit-btn:hover {
-      background: var(--acc);
-      border-color: var(--acc);
+      background: var(--accdk);
+      border-color: var(--accdk);
     }
 
     .form-submit-btn:disabled {
@@ -764,6 +773,7 @@
       .band-grid {
         grid-template-columns: 1fr;
       }
+
       .form-row {
         grid-template-columns: 1fr;
       }
@@ -787,21 +797,23 @@
     .gl li {
       display: grid;
       grid-template-columns: auto 1fr;
-      gap: 18px;
+      gap: 16px;
       padding: 20px 0;
-      border-top: 1px solid var(--line)
+      border-top: 1px solid var(--line);
+      align-items: start;
     }
 
     .gl li:last-child {
       border-bottom: 1px solid var(--line)
     }
 
-    .gl .n {
-      font-family: "Barlow Condensed", sans-serif;
-      font-weight: 700;
-      font-size: 19px;
-      color: var(--acc);
-      letter-spacing: .05em
+    .gl li i {
+      width: 10px;
+      height: 10px;
+      background: var(--acc);
+      display: block;
+      margin-top: 8px;
+      flex-shrink: 0;
     }
 
     .gl strong {
@@ -1010,8 +1022,8 @@
 
     .fgrid {
       display: grid;
-      grid-template-columns: 1.3fr 1fr 1fr;
-      gap: 40px;
+      grid-template-columns: 1.15fr 1fr 1.05fr 1.15fr;
+      gap: 36px;
       padding-block: 64px 40px;
       position: relative;
       z-index: 1
@@ -1024,11 +1036,13 @@
       margin-bottom: 16px
     }
 
-    footer .tel {
-      font-family: "Barlow Condensed", sans-serif;
-      font-size: clamp(26px, 7.5vw, 38px);
+    footer a {
       color: #fff;
-      display: block
+      transition: color .15s
+    }
+
+    footer a:hover {
+      color: var(--acc)
     }
 
     .fbot {
@@ -1045,7 +1059,7 @@
 
     @media(max-width:1000px) {
       .hd {
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         gap: 14px
       }
 
@@ -1068,7 +1082,14 @@
       }
 
       .fgrid {
-        grid-template-columns: 1fr 1fr
+        grid-template-columns: 1fr 1fr;
+        gap: 32px 36px
+      }
+    }
+
+    @media(max-width:860px) {
+      header .btn {
+        display: none
       }
     }
 
@@ -1081,17 +1102,54 @@
         padding: 0 20px
       }
 
-      .stats .wrap {
-        padding: 0 20px
+      header .wrap {
+        padding: 0 14px
       }
 
-      .logo-img {
-        width: 60px;
-        height: 60px
+      .hd {
+        padding-block: 5px;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        gap: 8px
       }
 
       .logo {
-        font-size: 23px
+        font-size: 18px;
+        gap: 8px;
+        line-height: 1;
+        white-space: nowrap;
+        flex-shrink: 1;
+        min-width: 0
+      }
+
+      .logo-img {
+        width: 32px;
+        height: 32px
+      }
+
+      .logo small {
+        display: none
+      }
+
+      .tel {
+        font-size: 16px;
+        white-space: nowrap;
+        margin-left: auto;
+        flex-shrink: 0
+      }
+
+      .pf {
+        padding: 6px 14px;
+        font-size: 11px;
+        flex-wrap: nowrap
+      }
+
+      .pf .eco-tag {
+        display: none
+      }
+
+      .stats .wrap {
+        padding: 0 20px
       }
 
       .card {
@@ -1151,8 +1209,8 @@
         <p class="lead">Rostoucí ceny písku, kameniva či zeminy a drahá likvidace suti mohou stavbu prodražit. Máme
           řešení šetrné k vaší peněžence i k přírodě — od ekologické likvidace stavebního odpadu až po prodej kvalitních
           recyklátů, které spolehlivě nahradí běžné suroviny.</p>
-        <div class="cta"><a class="btn pri" href="cenik-2026.pdf" target="_blank" rel="noopener">Stáhnout ceník v PDF</a><a class="btn"
-            href="tel:+420776133561">Zavolat a domluvit detaily</a></div>
+        <div class="cta"><a class="btn pri" href="cenik-2026.pdf" target="_blank" rel="noopener">Stáhnout ceník v
+            PDF</a><a class="btn pri" href="tel:+420776133561">Zavolat a domluvit detaily</a></div>
       </div>
     </div>
   </div>
@@ -1199,11 +1257,12 @@
           </div>
         </article>
         <article class="prod">
-          <div class="ph"><img class="fill" src="assets/zemina.webp" alt="Zemina, kvalitní ornice a prach" width="748" height="408" loading="lazy"></div>
+          <div class="ph"><img class="fill" src="assets/zemina.webp" alt="Zemina, kvalitní ornice a prach" width="748"
+              height="408" loading="lazy"></div>
           <div class="in">
             <h3>Zemina a prach</h3>
             <p class="body">Výkopová hlína, kvalitní ornice a prach pro dorovnání ploch.</p>
-            <div class="chips"><span class="chip eco">výkopová</span><span class="chip eco">ornice</span><span
+            <div class="chips"><span class="chip">výkopová</span><span class="chip">ornice</span><span
                 class="chip">prach 0–8 mm</span></div>
             <div class="price">od <b>50 Kč</b>/ tuna bez DPH</div><a class="btn pri" href="#cenik">Do poptávky</a>
           </div>
@@ -1217,14 +1276,16 @@
       <div class="band-grid">
         <div class="band-info">
           <h2>Máte zájem o likvidaci suti nebo nákup recyklátu?</h2>
-          <p>Vyplňte rychlý poptávkový formulář nebo si stáhněte aktuální ceník v PDF (platný od 1. 1. 2026). Rádi pro vás připravíme nezávaznou kalkulaci na míru.</p>
+          <p>Vyplňte rychlý poptávkový formulář nebo si stáhněte aktuální ceník v PDF (platný od 1. 1. 2026). Rádi pro
+            vás připravíme nezávaznou kalkulaci na míru.</p>
           <ul class="band-perks">
             <li><i></i> Nezávazná cenová nabídka obvykle do 24 hodin</li>
             <li><i></i> Odborné poradenství a doporučení vhodné frakce</li>
             <li><i></i> Možnost zajištění odvozu i drcení přímo na stavbě</li>
           </ul>
           <div class="cta" style="margin-top:28px">
-            <a class="btn gh" style="background:#fff;color:var(--accdk);border-color:#fff" href="cenik-2026.pdf" target="_blank" rel="noopener">Ceník 2026 (PDF)</a>
+            <a class="btn gh" style="background:#fff;color:var(--accdk);border-color:#fff" href="cenik-2026.pdf"
+              target="_blank" rel="noopener">Ceník 2026 (PDF)</a>
             <a class="btn gh" href="tel:+420776133561">+420 776 133 561</a>
           </div>
         </div>
@@ -1275,12 +1336,14 @@
 
             <div class="form-group">
               <label for="form-message">Zpráva / Množství a lokalita <span class="req">*</span></label>
-              <textarea id="form-message" name="Zpráva / Detaily poptávky" rows="3" required placeholder="Uveďte přibližné množství v tunách/m³, typ materiálu nebo místo stavby..."></textarea>
+              <textarea id="form-message" name="Zpráva / Detaily poptávky" rows="3" required
+                placeholder="Uveďte přibližné množství v tunách/m³, typ materiálu nebo místo stavby..."></textarea>
             </div>
 
             <!-- Anti-spam dynamic challenge -->
             <div class="spam-check-box">
-              <label for="spam-quiz"><span id="spam-question">Kontrola proti spamu</span> <span class="req">*</span></label>
+              <label for="spam-quiz"><span id="spam-question">Kontrola proti spamu</span> <span
+                  class="req">*</span></label>
               <input type="number" id="spam-quiz" required placeholder="Výsledek">
             </div>
 
@@ -1300,11 +1363,11 @@
       <div><span class="kick">Příjem odpadů</span>
         <h2 style="margin-top:12px">Co od vás rádi převezmeme k recyklaci</h2>
         <ul class="gl">
-          <li><span class="n">01</span><span><strong>Beton a stavební suť</strong><span>Čistý beton, cihly a tašky —
+          <li><i></i><span><strong>Beton a stavební suť</strong><span>Čistý beton, cihly a tašky —
                 kusy do 50 cm i nad 50 cm.</span></span></li>
-          <li><span class="n">02</span><span><strong>Stavební směsi</strong><span>Oddělené i smíchané frakce betonu a
+          <li><i></i><span><strong>Stavební směsi</strong><span>Oddělené i smíchané frakce betonu a
                 keramických výrobků.</span></span></li>
-          <li><span class="n">03</span><span><strong>Přírodní materiály</strong><span>Čistá zemina, kameny a
+          <li><i></i><span><strong>Přírodní materiály</strong><span>Čistá zemina, kameny a
                 jíl.</span></span></li>
         </ul>
         <p class="body" style="margin-top:22px;font-size:15.5px">Ceny za tunu podle druhu a velikosti kusů najdete v <a
@@ -1364,14 +1427,13 @@
           <li><b>Sídlo</b><span>TIS – Recyklace s.r.o., K Májovu 1394, 537 01 Chrudim IV</span></li>
         </ul>
         <div class="cta"><a class="btn pri" href="https://mapy.cz/zakladni?q=49.9278178%2C15.8120303" target="_blank"
-            rel="noopener">Navigovat přes Mapy.cz</a><a class="btn" href="https://www.google.com/maps/search/?api=1&query=49.9278178,15.8120303" target="_blank" rel="noopener">Google Mapy</a></div>
+            rel="noopener">Navigovat přes Mapy.cz</a><a class="btn pri"
+            href="https://www.google.com/maps/search/?api=1&query=49.9278178,15.8120303" target="_blank"
+            rel="noopener">Google Mapy</a></div>
       </div>
       <div class="locmap">
-        <iframe
-          src="https://maps.google.com/maps?q=49.9278178,15.8120303&hl=cs&z=15&output=embed"
-          title="Mapa - TIS Recyklace Slatiňany"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade">
+        <iframe src="https://maps.google.com/maps?q=49.9278178,15.8120303&hl=cs&z=15&output=embed"
+          title="Mapa - TIS Recyklace Slatiňany" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
         </iframe>
       </div>
     </div>
@@ -1393,9 +1455,9 @@
               řešení</span>
           </div>
         </div>
-        <h3>Volejte</h3>
-        <a class="tel" href="tel:+420776133561">+420 776 133 561</a>
-        <p style="margin-top:8px;color:rgba(255,255,255,.55)">Po–Pá 7:00–16:00</p>
+        <p style="line-height:1.7;color:rgba(255,255,255,.68);font-size:14.5px">Ekologická recyklace suti a prodej
+          certifikovaných recyklátů v areálu Píštovy, Slatiňany.</p>
+        <p style="margin-top:10px;color:rgba(255,255,255,.55);font-size:14px">Provozní doba: Po–Pá 7:00–16:00</p>
       </div>
       <div>
         <h3>Provozovatel</h3>
@@ -1403,9 +1465,26 @@
           CZ11942070</p>
       </div>
       <div>
-        <h3>Služby</h3>
-        <p style="line-height:1.9">Recyklace stavební suti<br>Prodej drceného kameniva<br>Drcení a třídění na
-          stavbě<br>Doprava a odvoz materiálu</p>
+        <h3>Vedení společnosti</h3>
+        <p style="font-weight:700;color:#fff;font-size:17.5px;margin-bottom:2px">Ing. Tomáš Imlauf</p>
+        <p
+          style="color:var(--green);font-size:13px;margin-bottom:10px;font-weight:600;text-transform:uppercase;letter-spacing:.04em">
+          jednatel společnosti</p>
+        <p style="line-height:1.85">
+          tel.: <a href="tel:+420739065563" style="color:#fff;font-weight:600">+420 739 065 563</a><br>
+          e-mail: <a href="mailto:tomasimlauf@tis-cr.eu" style="color:rgba(255,255,255,.85)">tomasimlauf@tis-cr.eu</a>
+        </p>
+      </div>
+      <div>
+        <h3>Recyklační linka</h3>
+        <p style="font-weight:700;color:#fff;font-size:17.5px;margin-bottom:2px">Lukáš Hájek</p>
+        <p
+          style="color:var(--green);font-size:13px;margin-bottom:10px;font-weight:600;text-transform:uppercase;letter-spacing:.04em">
+          vedoucí střediska</p>
+        <p style="line-height:1.85">
+          tel.: <a href="tel:+420776133561" style="color:#fff;font-weight:600">+420 776 133 561</a><br>
+          e-mail: <a href="mailto:lukashajek@tis-cr.eu" style="color:rgba(255,255,255,.85)">lukashajek@tis-cr.eu</a>
+        </p>
       </div>
     </div>
     <div class="wrap fbot"><span>© 2026 TIS Recyklace · TIS – Recyklace s.r.o.</span><span>Ceník platný od 1. 1.
@@ -1469,7 +1548,7 @@
           const localPart = emailParts[0];
           const domainPart = emailParts[1];
           const domainSubparts = domainPart.split('.');
-          
+
           if (localPart.length >= 3 && /^[a-zA-Z0-9._%+-]+$/.test(localPart)) {
             if (domainSubparts.length >= 2 && domainSubparts[0].length >= 3 && domainSubparts[domainSubparts.length - 1].length >= 2) {
               validEmail = true;

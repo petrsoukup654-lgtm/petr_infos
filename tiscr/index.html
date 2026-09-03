@@ -316,6 +316,13 @@
       color: var(--greendk)
     }
 
+    .hd-contact {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-left: auto
+    }
+
     .tel {
       font-family: "Barlow Condensed", sans-serif;
       font-weight: 700;
@@ -323,6 +330,20 @@
       letter-spacing: .01em;
       color: var(--ink);
       white-space: nowrap
+    }
+
+    .hd-mail {
+      font-family: "Barlow Condensed", sans-serif;
+      font-weight: 600;
+      font-size: 17px;
+      letter-spacing: .02em;
+      color: var(--mut);
+      white-space: nowrap;
+      transition: color .15s
+    }
+
+    .hd-mail:hover {
+      color: var(--acc)
     }
 
     .btn {
@@ -1131,11 +1152,26 @@
         display: none
       }
 
-      .tel {
-        font-size: 16px;
-        white-space: nowrap;
+      .hd-contact {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 2px;
         margin-left: auto;
+        line-height: 1.15
+      }
+
+      .tel {
+        font-size: 14.5px;
+        white-space: nowrap;
+        margin-left: 0;
         flex-shrink: 0
+      }
+
+      .hd-mail {
+        font-size: 12px;
+        color: var(--mut);
+        white-space: nowrap
       }
 
       .pf {
@@ -1192,7 +1228,10 @@
         <img class="logo-img" src="logo_tis_recyklace.png" alt="TIS Recyklace" width="84" height="84">
         <span class="logo-text">TIS Recyklace<small>Linka Slatiňany · <span>TIS – Recyklace s.r.o.</span></small></span>
       </a>
-      <a class="tel" href="tel:+420776133561" style="margin-left:auto">+420 776 133 561</a>
+      <div class="hd-contact">
+        <a class="tel" href="tel:+420776133561">+420 776 133 561</a>
+        <a class="hd-mail" href="mailto:lukashajek@tis-cr.eu">lukashajek@tis-cr.eu</a>
+      </div>
       <a class="btn pri" href="cenik-2026.pdf" target="_blank" rel="noopener">Ceník 2026 (PDF)</a>
     </div>
   </header>
@@ -1250,15 +1289,15 @@
               loading="lazy"></div>
           <div class="in">
             <h3>Směsný recyklát</h3>
-            <p class="body">Beton, cihla a keramika — ekonomická volba pro zásypy a podsypy.</p>
+            <p class="body">Beton a cihla — ekonomická volba pro zásypy a podsypy.</p>
             <div class="chips"><span class="chip">0–63 mm</span><span class="chip">8–32 mm</span><span
                 class="chip">32–63 mm</span></div>
             <div class="price">od <b>80 Kč</b>/ tuna bez DPH</div><a class="btn pri" href="#cenik">Do poptávky</a>
           </div>
         </article>
         <article class="prod">
-          <div class="ph"><img class="fill" src="assets/zemina.webp" alt="Zemina a ornice" width="748"
-              height="408" loading="lazy"></div>
+          <div class="ph"><img class="fill" src="assets/zemina.webp" alt="Zemina a ornice" width="748" height="408"
+              loading="lazy"></div>
           <div class="in">
             <h3>Zemina a ornice</h3>
             <p class="body">Výkopová hlína a kvalitní ornice pro dorovnání ploch a terénní úpravy.</p>
@@ -1267,8 +1306,8 @@
           </div>
         </article>
         <article class="prod">
-          <div class="ph"><img class="fill" src="assets/smes.webp" alt="Zásypový prach" width="748"
-              height="408" loading="lazy"></div>
+          <div class="ph"><img class="fill" src="assets/smes.webp" alt="Zásypový prach" width="748" height="408"
+              loading="lazy"></div>
           <div class="in">
             <h3>Zásypový prach</h3>
             <p class="body">Jemný prach vhodný pro obsypy inženýrských sítí, kabelů a spárování.</p>

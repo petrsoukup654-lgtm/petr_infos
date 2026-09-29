@@ -232,3 +232,119 @@
   width: 0%;
   transition: width 100ms ease-out;
 }
+
+/* --- Případové studie & Metriky ----------------------------------------- */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin: 2.2rem 0;
+}
+
+.stat-box {
+  border: 1px solid var(--border);
+  background: var(--white);
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-left: 3px solid var(--signal);
+}
+
+.stat-box__val {
+  font-size: clamp(2rem, 3.5vw, 2.6rem);
+  font-weight: 800;
+  line-height: 1.05;
+  color: var(--ink);
+  letter-spacing: -0.03em;
+}
+
+.stat-box__val .accent {
+  color: var(--signal);
+}
+
+.stat-box__label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+}
+
+.stat-box__desc {
+  font-size: 13px;
+  color: var(--text-soft);
+  line-height: 1.45;
+}
+
+/* --- Pipeline & Kroky procesu ------------------------------------------- */
+.pipeline-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin: 2.5rem 0;
+}
+
+.pipeline-step {
+  border: 1px solid var(--border);
+  background: var(--white);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: border-color 160ms ease;
+}
+
+.pipeline-step:hover {
+  border-color: var(--signal);
+}
+
+.pipeline-step__num {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--signal);
+  letter-spacing: 0.14em;
+}
+
+.pipeline-step__title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  margin: 0;
+}
+
+.pipeline-step__desc {
+  font-size: 0.925rem;
+  line-height: 1.55;
+  color: var(--text-soft);
+  margin: 0;
+}
+
+/* --- CTA Box na konci případovky ---------------------------------------- */
+.cta-box {
+  background: var(--ink);
+  color: var(--paper);
+  padding: clamp(32px, 5vw, 48px);
+  margin: 3.5rem 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: flex-start;
+  border-left: 4px solid var(--signal);
+}
+
+.cta-box h3 {
+  color: var(--paper);
+  font-size: clamp(1.4rem, 2.5vw, 1.875rem);
+  margin: 0;
+}
+
+.cta-box p {
+  color: var(--on-ink-muted);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  max-width: 620px;
+  margin: 0;
+}

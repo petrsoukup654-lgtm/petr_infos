@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="cs">
+  <head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5NFFHHFL');</script>
+    <!-- End Google Tag Manager -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7S4MZM3EDQ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-7S4MZM3EDQ');
+    </script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Autonomní AI systém pro projektové účetnictví a rozvahu zakázek — Petr Soukup</title>
+    <meta
+      name="description"
+      content="Případová studie autonomního AI systému pro projektové účetnictví zakázek. Multimodální AI (Google Gemini), 95% bezobslužnost, párování plateb a manažerské rozvahy v reálném čase."
+    />
+    <meta name="theme-color" content="#0e1518" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Autonomní AI systém pro projektové účetnictví a rozvahu zakázek" />
+    <meta
+      property="og:description"
+      content="Případová studie end-to-end automatizace účetnictví stavebních zakázek. Úspora 85–90 % administrativního času a finanční bilance dostupná do 5 minut."
+    />
+    <meta property="og:locale" content="cs_CZ" />
+
+    <!-- monogram ze značky: Signál plocha, „ps" v Inku -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230FB2A0'/%3E%3Ctext x='50' y='68' text-anchor='middle' font-family='sans-serif' font-weight='800' font-size='52' letter-spacing='-3' fill='%230E1518'%3Eps%3C/text%3E%3C/svg%3E"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Instrument+Serif:ital@0;1&amp;display=swap"
+    />
+    <link rel="stylesheet" href="assets/site.css" />
+    <link rel="stylesheet" href="assets/home.css" />
+    <link rel="stylesheet" href="assets/article.css" />
+
+    <!-- Schema.org structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "TechArticle",
+          "@id": "https://petr-soukup.info/automatizace-faktur.html#article",
+          "headline": "Autonomní AI systém pro projektové účetnictví a rozvahu zakázek",
+          "description": "Případová studie end-to-end automatizace účetnictví a rozvahy zakázek pomocí multimodální AI (Google Gemini) a Google Workspace.",
+          "datePublished": "2026-09-29",
+          "inLanguage": "cs-CZ",
+          "author": {
+            "@type": "Person",
+            "name": "Petr Soukup",
+            "url": "https://petr-soukup.info/"
+          },
+          "publisher": {
+            "@type": "Person",
+            "name": "Petr Soukup",
+            "url": "https://petr-soukup.info/"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://petr-soukup.info/automatizace-faktur.html#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Domů",
+              "item": "https://petr-soukup.info/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Práce",
+              "item": "https://petr-soukup.info/#prace"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "AI systém projektového účetnictví",
+              "item": "https://petr-soukup.info/automatizace-faktur.html"
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+  </head>
+  <body>
+    <!-- Reading Progress Bar -->
+    <div class="reading-progress">
+      <div class="reading-progress__bar" id="progressBar"></div>
+    </div>
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5NFFHHFL"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <a class="skip-link" href="#obsah">Přeskočit na obsah</a>
+
+    <!-- Site Header -->
+    <header class="site-header">
+      <a class="logo" href="./" aria-label="Petr Soukup — domů">
+        <svg
+          class="logo__mark"
+          viewBox="0 0 96 96"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <g
+            fill="none"
+            stroke="#0E1518"
+            stroke-width="9"
+            stroke-linecap="square"
+          >
+            <path d="M31 20 L9 48 L31 76" />
+            <path d="M65 20 L87 48 L65 76" />
+          </g>
+          <circle cx="48" cy="48" r="10.5" fill="#0FB2A0" />
+        </svg>
+        <span>
+          <span class="logo__name">Petr Soukup</span>
+          <span class="logo__role">E-commerce · AI · tvorba webů</span>
+        </span>
+      </a>
+
+      <nav class="site-nav" aria-label="Hlavní navigace">
+        <a href="./#prace">Práce</a>
+        <a href="./#aktuality">Aktuality</a>
+        <a href="./#kontakt">Kontakt</a>
+      </nav>
+    </header>
+
+    <main id="obsah">
+      <!-- Article Hero Header (on-ink dark surface) -->
+      <section class="hero on-ink article-hero">
+        <div class="article-hero__inner">
+          <a href="./#prace" class="link-mono article-hero__back">← Zpět na přehled prací</a>
+
+          <ul class="hero__tags">
+            <li><span class="tag tag--signal">AI v praxi</span></li>
+            <li><span class="tag">Automatizace</span></li>
+            <li><span class="tag tag--sand">Google Gemini</span></li>
+            <li><span class="tag tag--outline" style="border-color: var(--paper); color: var(--paper);">Google Workspace</span></li>
+          </ul>
+
+          <h1 class="article-hero__title">
+            Autonomní AI systém pro projektové účetnictví
+            <span class="accent">a rozvahu zakázek</span>
+          </h1>
+
+          <p class="hero__lead" style="max-width: 720px; font-size: 15px; color: var(--on-ink-muted);">
+            End-to-end automatizovaný řetězec nahrazující manuální přepisování dokladů. Okamžitý přehled o ziskovosti, nákladech a cash flow stavebních projektů v reálném čase.
+          </p>
+
+          <div class="article-hero__meta">
+            <div class="article-hero__author">
+              <div class="article-hero__avatar">PS</div>
+              <span>Petr Soukup</span>
+            </div>
+            <div>📂 Případová studie</div>
+            <div>⚡ 95% bezobslužný proces</div>
+            <div>⏱️ 5 min čtení</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Key Metrics Strip -->
+      <section class="article-body" style="padding-top: 2rem; padding-bottom: 0;">
+        <div class="article-body__inner">
+          <div class="stat-grid">
+            <div class="stat-box">
+              <span class="stat-box__val">~95 <span class="accent">%</span></span>
+              <span class="stat-box__label">Bezobslužnost</span>
+              <span class="stat-box__desc">Zpracování probíhá autonomně od e-mailu po zaúčtování.</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-box__val">85–90 <span class="accent">%</span></span>
+              <span class="stat-box__label">Úspora času</span>
+              <span class="stat-box__desc">Z 15–20 h týdně na méně než 1–2 h vizuální kontroly výjimek.</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-box__val">&lt; 5 <span class="accent">min</span></span>
+              <span class="stat-box__label">Dostupnost dat</span>
+              <span class="stat-box__desc">Finanční bilance je aktualizována ihned po doručení dokladu.</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-box__val">0 <span class="accent">chyb</span></span>
+              <span class="stat-box__label">Eliminace omylů</span>
+              <span class="stat-box__desc">Ověřování IČO, detekce duplicit a přesné matematické součty.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Article Content Body (Paper background) -->
+      <section class="article-body">
+        <div class="article-body__inner">
+          <p class="lede">
+            Zpracování účetních dokladů ve stavebnictví tradičně představuje administrativní noční můru: desítky subdodavatelských faktur v různých formátech, zmačkané účtenky z terénu, režimy přenesené daňové povinnosti a bankovní výpisy. Výsledkem bývají data zpožděná o týdny, přetížená administrativa a nemožnost reagovat na překročení rozpočtu včas.
+          </p>
+
+          <div class="quote">
+            <p class="quote__text">
+              „Cílem nebylo pouze vytěžit data z PDF, ale postavit spolehlivý end-to-end systém, který propojí příjem e-mailu, kontrolu rozpočtu, párování banky a manažerský reporting do 5 minut od odeslání dokladu.“
+            </p>
+            <div class="quote__source">Architektonický záměr projektu</div>
+          </div>
+
+          <hr />
+
+          <h2>1. Smysl projektu (Business záměr)</h2>
+
+          <p>
+            Cílem projektu bylo <strong>nahradit zdlouhavé manuální přepisování dokladů</strong> a poskytnout projektovým manažerům a vedení firmy <strong>okamžitý přehled o ziskovosti, nákladech a cash flow</strong> jednotlivých stavebních zakázek v reálném čase.
+          </p>
+
+          <p>
+            Systém slouží jako centrální nervové centrum pro příjem, evidenci a vyhodnocování všech souvisejících dokladů:
+          </p>
+
+          <ul>
+            <li><strong>Subdodavatelské a materiálové faktury:</strong> Různorodá PDF se specifickými daňovými režimy (RPDP).</li>
+            <li><strong>Hotovostní nákupy z terénu:</strong> Mobilní skeny a fotografie účtenek od stavbyvedoucích a nákupčích.</li>
+            <li><strong>Klientská fakturace:</strong> Vydané faktury za etapy stavebních děl.</li>
+            <li><strong>Bankovní výpisy:</strong> Automatické párování transakcí, záloh i doplatků.</li>
+          </ul>
+
+          <hr />
+
+          <h2>2. Míra automatizace (Téměř 95 % bezobslužný proces)</h2>
+
+          <p>
+            Řešení funguje jako plně automatizovaný řetězec postavený na moderních multimodálních AI modelech <strong>Google Gemini</strong> a cloudové infrastruktuře <strong>Google Workspace</strong>. Člověk do procesu vstupuje výhradně při schvalování nestandardních odchylek nebo nejednoznačných podkladů.
+          </p>
+
+          <!-- Pipeline Architecture Grid -->
+          <div class="pipeline-grid">
+            <div class="pipeline-step">
+              <span class="pipeline-step__num">KROK 01</span>
+              <h3 class="pipeline-step__title">Zero-click příjem &amp; validace</h3>
+              <p class="pipeline-step__desc">
+                Skript na pozadí nepřetržitě monitoruje e-mailové schránky, ověřuje bezpečnostní whitelist odesílatelů a automaticky páruje přílohy ke kódům zakázek. Kontroluje stav projektu a brání zaúčtování na uzavřené akce.
+              </p>
+            </div>
+
+            <div class="pipeline-step">
+              <span class="pipeline-step__num">KROK 02</span>
+              <h3 class="pipeline-step__title">AI vytěžování z PDF a skenů</h3>
+              <p class="pipeline-step__desc">
+                Využití multimodální AI (Google Gemini) pro bezchybnou extrakci daňových údajů: dodavatel, odběratel, IČO, DUZP, variabilní symbol, rozpad sazeb DPH a režimy přenesené daňové povinnosti (RPDP).
+              </p>
+            </div>
+
+            <div class="pipeline-step">
+              <span class="pipeline-step__num">KROK 03</span>
+              <h3 class="pipeline-step__title">Inteligentní součet účtenek</h3>
+              <p class="pipeline-step__desc">
+                Systém v jediném PDF skenu rozpozná vícero pokladních dokladů naráz, matematicky přesně sečte jednotlivé položky a zaeviduje je jako jeden auditovatelný souhrnný náklad zakázky s odkazem na originál.
+              </p>
+            </div>
+
+            <div class="pipeline-step">
+              <span class="pipeline-step__num">KROK 04</span>
+              <h3 class="pipeline-step__title">Klasifikace &amp; ochrana dat</h3>
+              <p class="pipeline-step__desc">
+                Automatické rozlišení výnosů (vydané faktury) a nákladů (přijaté faktury a hotovost). Víceúrovňová ochrana proti duplicitám, standardizace názvů a trvalá archivace originálů na cloudu.
+              </p>
+            </div>
+
+            <div class="pipeline-step">
+              <span class="pipeline-step__num">KROK 05</span>
+              <h3 class="pipeline-step__title">Automatické párování plateb</h3>
+              <p class="pipeline-step__desc">
+                AI modul pro vytěžování bankovních výpisů páruje příchozí i odchozí transakce proti evidovaným dokladům podle VS, částek i textových shod, včetně podpory pro částečné úhrady.
+              </p>
+            </div>
+
+            <div class="pipeline-step">
+              <span class="pipeline-step__num">KROK 06</span>
+              <h3 class="pipeline-step__title">Reporting &amp; rozvahy</h3>
+              <p class="pipeline-step__desc">
+                Dynamické přepočítávání marží při jakékoliv změně v reálném čase a generování profesionálních manažerských PDF rozvah pro investory a vedení na jedno kliknutí.
+              </p>
+            </div>
+          </div>
+
+          <div class="article-code-block">
+            <pre>
+[ Příchozí e-mail / Sken ] 
+       │
+       ▼
+[ Whitelist & Kontrola stavu zakázky ] ──(Chyba/Neautorizováno)──► [ Výstraha správci ]
+       │
+       ▼
+[ Multimodální Google Gemini ] ──► Extrakce IČO, DUZP, částek, DPH & RPDP
+       │
+       ├─► Vícedokladové účtenky: Rekonstrukce položek a kontrolní součet
+       ├─► Detekce duplicit v databázi (IČO + VS + částka)
+       │
+       ▼
+[ Datový sklad zakázky & Cloud archiv originálů ]
+       ▲
+       │ ◄─── [ Modul bankovních výpisů (Párování plateb & saldokonto) ]
+       │
+       ▼
+[ Finanční rozvaha zakázky v reálném čase + Manažerský PDF export ]
+            </pre>
+          </div>
+
+          <hr />
+
+          <h2>3. Předpokládaná úspora času a přínosy</h2>
+
+          <p>
+            Zavedení autonomního řetězce přineslo skokový rozdíl v efektivitě týmu, eliminovalo zpoždění i chybovost spojenou s lidským faktorem.
+          </p>
+
+          <div class="article-table-wrapper">
+            <table class="article-table">
+              <thead>
+                <tr>
+                  <th>Metrika</th>
+                  <th>Před zavedením (manuální práce)</th>
+                  <th>S autonomním AI systémem</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Časová náročnost</strong></td>
+                  <td>15–20 hodin týdně (stahování, přepis, dohledávání)</td>
+                  <td><span class="badge-signal">&lt; 1–2 hodiny týdně</span> (pouhá kontrola výjimek)</td>
+                </tr>
+                <tr>
+                  <td><strong>Dostupnost bilance</strong></td>
+                  <td>Zpoždění dnů až týdnů (po účetní uzávěrce)</td>
+                  <td><span class="badge-signal">Do 5 minut</span> od přijetí e-mailu s dokladem</td>
+                </tr>
+                <tr>
+                  <td><strong>Chybovost dat</strong></td>
+                  <td>Riziko překlepů v částkách a variabilních symbolech</td>
+                  <td><span class="badge-ok">Eliminováno</span> (automatická validace a párování)</td>
+                </tr>
+                <tr>
+                  <td><strong>Zpracování účtenek</strong></td>
+                  <td>Zdlouhavé manuální sčítání a přepis z papírků</td>
+                  <td><span class="badge-ok">Automatické</span> (AI detekce více dokladů v 1 skenu)</td>
+                </tr>
+                <tr>
+                  <td><strong>Párování s bankou</strong></td>
+                  <td>Ruční kontrola řádek po řádku na výpisech</td>
+                  <td><span class="badge-signal">Okamžité párování</span> proti otevřeným závazkům</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Hlavní pilíře přínosů pro vedení firmy</h3>
+
+          <ul>
+            <li>
+              <strong>Úspora času administrativy o 85–90 %:</strong> Z původních cca 15–20 hodin týdně strávených stahováním příloh, přepisováním částek do tabulek, ověřováním IČO a dohledáváním variabilních symbolů se lidská práce zredukovala na méně než 1–2 hodiny týdně.
+            </li>
+            <li>
+              <strong>Zrychlení dostupnosti dat:</strong> Finanční bilance zakázky je aktualizována do 5 minut od okamžiku, kdy stavbyvedoucí nebo dodavatel odešle e-mail s fakturou (oproti dnům až týdnům při tradičním účetním cyklu).
+            </li>
+            <li>
+              <strong>Eliminace lidských chyb:</strong> Odstranění překlepů v částkách, záměn variabilních symbolů a přehlédnutých duplicitních plateb.
+            </li>
+          </ul>
+
+          <!-- Call to Action Box -->
+          <div class="cta-box">
+            <span class="eyebrow" style="color: var(--signal);">Automatizace v praxi</span>
+            <h3>Máte ve firmě rutinní procesy, které by mělo dělat AI?</h3>
+            <p>
+              Navrhuji a implementuji pragmatická AI řešení, která skutečně šetří hodiny lidské práce a přinášejí měřitelné výsledky bez zbytečného technologického balastu.
+            </p>
+            <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 6px;">
+              <a class="btn btn--primary" href="mailto:petrsoukup@outlook.com">Napište mi nezávazně</a>
+              <a class="btn btn--secondary" href="./#prace">Další práce</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Site Footer -->
+    <footer class="site-footer on-ink" id="kontakt">
+      <div class="site-footer__inner">
+        <div>
+          <span class="logo">
+            <svg
+              class="logo__mark"
+              viewBox="0 0 96 96"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <g
+                fill="none"
+                stroke="#F4F2EC"
+                stroke-width="9"
+                stroke-linecap="square"
+              >
+                <path d="M31 20 L9 48 L31 76" />
+                <path d="M65 20 L87 48 L65 76" />
+              </g>
+              <circle cx="48" cy="48" r="10.5" fill="#0FB2A0" />
+            </svg>
+            <span>
+              <span class="logo__name">Petr Soukup</span>
+              <span class="logo__role">E-commerce · AI · tvorba webů</span>
+            </span>
+          </span>
+        </div>
+
+        <div>
+          <p class="eyebrow">Kontakt</p>
+          <ul class="site-footer__contact">
+            <li><a href="mailto:petrsoukup@outlook.com">petrsoukup@outlook.com</a></li>
+            <li>petr-soukup.info</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="site-footer__bottom">
+        <span>© 2026 Petr Soukup</span>
+        <span>Design systém Signál v1.0</span>
+      </div>
+    </footer>
+
+    <!-- Reading Progress Script -->
+    <script>
+      window.addEventListener('scroll', function () {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        const bar = document.getElementById('progressBar');
+        if (bar) {
+          bar.style.width = scrolled + '%';
+        }
+      });
+    </script>
+  </body>
+</html>
